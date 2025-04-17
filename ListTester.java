@@ -3,14 +3,16 @@ import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+import javax.print.DocFlavor.STRING;
+
 /**
- * A unit test class for lists that implement IndexedUnsortedList. 
+ * A unit test class for lists that implement IndexedUnsortedList.
  * This is a set of black box tests that should work for any implementation
  * of this interface.
- * 
+ *
  * NOTE: One example test is given for each interface method using a new list to
  * get you started.
- * 
+ *
  * @author mvail, mhthomas, amussell (lambdas), lsevigny (iterator decorator)
  */
 public class ListTester {
@@ -23,10 +25,10 @@ public class ListTester {
 
 	// possible results expected in tests
 	private enum Result {
-		IndexOutOfBounds, IllegalState, NoSuchElement, 
-		ConcurrentModification, UnsupportedOperation, 
+		IndexOutOfBounds, IllegalState, NoSuchElement,
+		ConcurrentModification, UnsupportedOperation,
 		NoException, UnexpectedException,
-		True, False, Pass, Fail, 
+		True, False, Pass, Fail,
 		MatchingValue,
 		ValidString
 	};
@@ -41,7 +43,7 @@ public class ListTester {
 
 	// determine whether to include ListIterator functionality tests
 	private final boolean SUPPORTS_LIST_ITERATOR; //initialized in constructor
-	
+
 	//tracking number of tests and test results
 	private int passes = 0;
 	private int failures = 0;
@@ -124,11 +126,11 @@ public class ListTester {
 		System.out.printf("\nSection Tests: %d,  Passed: %d,  Failed: %d\n", secTotal, secPasses, secFails);
 		secTotal = totalRun; //reset for next section
 		secPasses = passes;
-		secFails = failures;		
+		secFails = failures;
 		System.out.printf("Tests Run So Far: %d,  Passed: %d (%.1f%%),  Failed: %d\n",
 				totalRun, passes, passes*100.0/totalRun, failures);
 	}
-	
+
 	/////////////////////
 	// XXX runTests()
 	/////////////////////
@@ -177,8 +179,9 @@ public class ListTester {
 			// Scenario: 04 TODO Tyler
 		testSingleElementList(emptyList_addA_A, "emptyList_addA_A", LIST_A, STRING_A);
 			// Scenario: 05 TODO Colin
+		testSingleElementList(emptyList_addA_0, "emptyList_AddA_0", LIST_A, STRING_A);
 
-			
+
 		//1-element to empty list
 			// Scenario: 12
 
@@ -198,15 +201,15 @@ public class ListTester {
 
 			// Scenario: 10
 
-			
+
 		//1-element to changed 1-element via set()
 			// Scenario: 16
 
-			
+
 		//2-element to empty list
 			// Scenario: 47
 
-			
+
 		//2-element to 1-element
 			// Scenario: 25 TODO Tyra
 
@@ -224,21 +227,22 @@ public class ListTester {
 
 			// Scenario: 46
 
-			
+
 		//2-element to 3-element
 			// Scenario: 17 TODO Colin
+		testThreeElementList(AB_addToFrontC, "AB_addToFrontC", LIST_CAB, STRING_CAB);
 
 			// Scenario: 20 TODO Zion
 
 			// Scenario: 23
 
-			
+
 		//2-element to changed 2-element via set()
 
 		//3-element to empty list
 			// Scenario: 54
 
-			
+
 		//3-element to 1-element
 			// Scenario: 51
 
@@ -246,7 +250,7 @@ public class ListTester {
 
 			// Scenario: 53
 
-			
+
 		//3-element to 2-element
 			// Scenario: 33
 
@@ -260,7 +264,7 @@ public class ListTester {
 
 			// Scenario: 50
 
-			
+
 		//3-element to changed 3-element via set()
 
 		//List Iterator Scenarios
@@ -286,7 +290,7 @@ public class ListTester {
 	/**
 	 * Scenario 01: no list -> constructor -> [ ]
 	 * Returns an IndexedUnsortedList for the "new empty list" scenario.
-	 * 
+	 *
 	 * NOTE: Comment out cases for any implementations not currently available
 	 *
 	 * @return [] after constructor
@@ -316,11 +320,11 @@ public class ListTester {
 	}
 	// The following creates a "lambda" reference that allows us to pass a scenario
 	//  builder method as an argument. We covered in lecture how it works - however, if you are
-	//  struggling with it, just make sure each scenario building method has a corresponding Scenario 
+	//  struggling with it, just make sure each scenario building method has a corresponding Scenario
 	//  assignment statement as in these examples.
 	private Scenario<Integer> newList = () -> newList();
 
-	/** Scenario #02: [] -> addToFront(A) -> [A] 
+	/** Scenario #02: [] -> addToFront(A) -> [A]
 	 * @return [A] after addToFront(A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_addToFrontA_A() {
@@ -329,24 +333,33 @@ public class ListTester {
 	}
 	private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
 
-	/** Scenario #03: [] -> addToRear(A) -> [A] 
+	/** Scenario #03: [] -> addToRear(A) -> [A]
 	 * @return [A] after addToRear(A)
 	 */
 
-	 
+
 	/** Scenario #04: [] -> add(A) -> [A] Tyler
 	 * @return [A] after add(A)
 	 */
+	private IndexedUnsortedList<Integer> emptyList_addA_A() {
+		IndexedUnsortedList<Integer> list = emptyList_addA_A();
+		list.addToFront(ELEMENT_B);
+		return list;
+	}
+	private Scenario<Integer> A_addToFrontB_BA = () -> A_addToFrontB_BA();
 
-	/** Scenario #05: [] -> add(0, A) -> [A] 
+	/** Scenario #05: [] -> add(0, A) -> [A]
 	 * @return [A] after add(0, A)
 	 */
+	private IndexedUnsortedList<Integer> emptyList_addA_0() {
+		IndexedUnsortedList<
+	}
 
-	/** Scenario #06: [A] -> addToFront(B) -> [B,A] 
+	/** Scenario #06: [A] -> addToFront(B) -> [B,A]
 	 * @return [B,A] after addToFront(B)
 	 */
 	private IndexedUnsortedList<Integer> A_addToFrontB_BA() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
 		list.addToFront(ELEMENT_B);
 		return list;
 	}
@@ -364,7 +377,7 @@ public class ListTester {
 	 * @return [] after removeFirst()
 	 */
 
-	/** Scenario #13: [A] -> removeLast() -> [] 
+	/** Scenario #13: [A] -> removeLast() -> []
 	 * @return [] after removeLast()
 	 */
 	private IndexedUnsortedList<Integer> A_removeLast_emptyList() {
@@ -377,137 +390,137 @@ public class ListTester {
 	 * @return [] after remove(A)
 	 */
 
-	/** Scenario #15: [A] -> remove(0) -> [] 
+	/** Scenario #15: [A] -> remove(0) -> []
 	 * @return [] after remove(0)
 	 */
 
-	 
-	/** Scenario #16: [A] -> set(0,B) -> [B] 
+
+	/** Scenario #16: [A] -> set(0,B) -> [B]
 	 * @return [B] after set(0,B)
 	 */
 
-	 
-	/** Scenario #17: [A,B] -> addToFront(C) -> [C,A,B] 
+
+	/** Scenario #17: [A,B] -> addToFront(C) -> [C,A,B]
 	 * @return [C,A,B] after addToFront(C)
 	 */
 
-	 
-	/** Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C] 
+
+	/** Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C]
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
 	private IndexedUnsortedList<Integer> AB_addAfterCB_ABC() {
-		IndexedUnsortedList<Integer> list = 
+		IndexedUnsortedList<Integer> list =
 	}
-	 
-	/** Scenario #23: [A,B] -> add(1,C) -> [A,C,B] 
+
+	/** Scenario #23: [A,B] -> add(1,C) -> [A,C,B]
 	 * @return [A,C,B] after add(1,C)
 	 */
 
-	 
+
 	/** Scenario #25: [A,B] -> removeFirst() -> [B]
 	 * @return [B] after removeFirst()
 	 */
 
-	 
+
 	/** Scenario #26: [A,B] -> removeLast() -> [A]
 	 * @return [A] after removeLast()
 	 */
 
-	 
+
 	/** Scenario #27: [A,B] -> remove(A) -> [B]
 	 * @return [B] after remove(A)
 	 */
 
-	 
+
 	/** Scenario #28: [A,B] -> remove(B) -> [A]
 	 * @return [A] after remove(B)
 	 */
 
-	 
+
 	/** Scenario #29: [A,B] -> remove(0) -> [B]
 	 * @return [B] after remove(0)
 	 */
 
-	 
+
 	/** Scenario #30: [A,B] -> remove(1) -> [A]
 	 * @return [A] after remove(1)
 	 */
 
-	 
+
 	/** Scenario #33: [A,B,C] -> removeFirst() -> [B,C]
 	 * @return [B,C] after removeFirst()
 	 */
 
-	 
+
 	/** Scenario #37: [A,B,C] -> remove(C) -> [A,B]
 	 * @return [A,B] after remove(C)
 	 */
 
-	 
+
 	/** Scenario #39: [A,B,C] -> remove(1) -> [A,C]
 	 * @return [A,C] after remove(1)
 	 */
 
-	 
+
 	/** Scenario #44: [A] -> iterator, next(), remove() -> []
 	 * @return [] after iterator, next(), remove()
 	 */
 
-	 
+
 	/** Scenario #45: [A,B] -> iterator, next(), remove() -> [B]
 	 * @return [B] after iterator, next(), remove()
 	 */
 
-	 
+
 	/** Scenario #46: [A,B] -> iterator, next(), next(), remove() -> [A]
 	 * @return [A] after iterator, next(), next(), remove()
 	 */
 
-	 
+
 	/** Scenario #47: [A,B] -> iterator, next(), remove(), next(), remove() -> []
 	 * @return [] after iterator, next(), remove(), next(), remove()
 	 */
 
-	 
+
 	/** Scenario #48: [A,B,C] -> iterator, next(), remove() -> [B,C]
 	 * @return [B,C] after iterator, next(), remove()
 	 */
 
-	 
+
 	/** Scenario #49: [A,B,C] -> iterator, next(), next(), remove() -> [A,C]
 	 * @return [A,C] after iterator, next(), next(), remove()
 	 */
 
-	 
+
 	/** Scenario #50: [A,B,C] -> iterator, next(), next(), next(), remove() -> [A,B]
 	 * @return [A,B] after iterator, next(), next(), next(), remove()
 	 */
 
-	 
+
 	/** Scenario #51: [A,B,C] -> iterator, next(), remove(), next(), remove() -> [C]
 	 * @return [C] after iterator, next(), remove(), next(), remove()
 	 */
 
-	 
+
 	/** Scenario #52: [A,B,C] -> iterator, next(), remove(), next(), next(), remove() -> [B]
 	 * @return [B] after iterator, next(), remove(), next(), next(), remove()
 	 */
 
-	 
+
 	/** Scenario #53: [A,B,C] -> iterator, next(), next(), remove(), next(), remove() -> [A]
 	 * @return [A] after iterator, next(), next(), remove(), next(), remove()
 	 */
 
-	 
+
 	/** Scenario #54: [A,B,C] -> iterator, next(), remove(), next(), remove(), next(), remove() -> []
 	 * @return [] after iterator, next(), remove(), next(), remove(), next(), remove()
 	 */
 
-	 
+
 	/////////////////////////////////
 	//XXX Tests for 0-element list
 	/////////////////////////////////
-	
+
 	/** Run all tests on scenarios resulting in an empty list
 	 * @param scenario lambda reference to scenario builder method
 	 * @param scenarioName name of the scenario being tested
@@ -578,11 +591,11 @@ public class ListTester {
 			}
 		}
 	}
-	
+
 	//////////////////////////////////
 	//XXX Tests for 1-element list
 	//////////////////////////////////
-	
+
 	/** Run all tests on scenarios resulting in a single element list
 	 * @param scenario lambda reference to scenario builder method
 	 * @param scenarioName name of the scenario being tested
@@ -628,7 +641,7 @@ public class ListTester {
 			// Iterator
 				// test to construct iterator
 			// printTest(scenarioName + "_testIter", testIter(scenario.build(), Result.NoException));
-			// 	// tests after getting iterator	
+			// 	// tests after getting iterator
 			// printTest(scenarioName + "_testIterHasNext", testIterHasNext(WrapIt.prep(scenario.build()).getIterator(), Result.True));
 			// printTest(scenarioName + "_testIterNext", testIterNext(WrapIt.prep(scenario.build()).getIterator(), contents[0], Result.MatchingValue));
 			// printTest(scenarioName + "_testIterRemove", testIterRemove(WrapIt.prep(scenario.build()).getIterator(), Result.IllegalState));
@@ -683,12 +696,12 @@ public class ListTester {
 	/////////////////////////////////
 	//XXX Tests for 2-element list
 	/////////////////////////////////
-	
+
 	/** Run all tests on scenarios resulting in a two-element list
 	 * @param scenario lambda reference to scenario builder method
 	 * @param scenarioName name of the scenario being tested
 	 * @param contents elements expected in the list after scenario has been set up
-	 * @param contentsString contains character labels corresponding to values in contents 
+	 * @param contentsString contains character labels corresponding to values in contents
 	 */
 	private void testTwoElementList(Scenario<Integer> scenario, String scenarioName, Integer[] contents, String contentsString) {
 		System.out.printf("\nSCENARIO: %s\n\n", scenarioName);
@@ -700,7 +713,7 @@ public class ListTester {
 				// TODO: will add in Lab 10
 				// test to construct iterator
 
-				// tests after getting iterator	
+				// tests after getting iterator
 
 				// tests after calling next on an iterator
 
@@ -727,12 +740,12 @@ public class ListTester {
 	//////////////////////////////////
 	//XXX Tests for 3-element list
 	//////////////////////////////////
-	
+
 	/** Run all tests on scenarios resulting in a three-element list
 	 * @param scenario lambda reference to scenario builder method
 	 * @param scenarioName name of the scenario being tested
 	 * @param contents elements expected in the list after scenario has been set up
-	 * @param contentsString contains character labels corresponding to values in contents 
+	 * @param contentsString contains character labels corresponding to values in contents
 	 */
 	private void testThreeElementList(Scenario<Integer> scenario, String scenarioName, Integer[] contents, String contentsString) {
 		System.out.printf("\nSCENARIO: %s\n\n", scenarioName);
@@ -744,7 +757,7 @@ public class ListTester {
 				// TODO: will add in Lab 10
 				// test to construct iterator
 
-				// tests after getting iterator	
+				// tests after getting iterator
 
 				// tests after calling next on an iterator
 
@@ -759,7 +772,7 @@ public class ListTester {
 				// printTest(scenarioName + "_testListIter", testListIter(scenario.build(), Result.UnsupportedOperation));
 				// printTest(scenarioName + "_testListIter0", testListIter(scenario.build(), 0, Result.UnsupportedOperation));
 			}
-					
+
 		} catch (Exception e) {
 			System.out.printf("***UNABLE TO RUN/COMPLETE %s***\n", scenarioName + " TESTS");
 			e.printStackTrace();
@@ -1305,7 +1318,7 @@ public class ListTester {
 	//////////////////////////////////////////////////////////
 	//XXX HELPER METHODS FOR TESTING ITERATORS
 	//////////////////////////////////////////////////////////
-	
+
 	/** Helper for testing iterators. Return an Iterator that has been advanced numCallsToNext times.
 	 * @param list
 	 * @param numCallsToNext
@@ -1640,7 +1653,7 @@ public class ListTester {
 	//////////////////////////////////////////////////////////
 	//XXX HELPER METHODS FOR TESTING LISTITERATORS
 	//////////////////////////////////////////////////////////
-	
+
 	/** Helper for testing ListIterators. Return a ListIterator that has been advanced numCallsToNext times.
 	 * @param iterator
 	 * @param numCallsToNext
@@ -1682,7 +1695,7 @@ public class ListTester {
 
 	/** run Iterator concurrency tests */
 	private void test_IterConcurrency() {
-		System.out.println("\nIterator Concurrency Tests\n");		
+		System.out.println("\nIterator Concurrency Tests\n");
 		try {
 			printTest("emptyList_testConcurrentIter", testIterConcurrent(newList(), Result.NoException));
 			IndexedUnsortedList<Integer> list = newList();
@@ -1776,7 +1789,7 @@ public class ListTester {
 			list = emptyList_addToFrontA_A();
 			it1 = list.iterator();
 			list.removeLast();
-			printTest("A_removeLast_testIterRemoveConcurrent", testIterRemove(it1, Result.ConcurrentModification));			
+			printTest("A_removeLast_testIterRemoveConcurrent", testIterRemove(it1, Result.ConcurrentModification));
 
 			list = emptyList_addToFrontA_A();
 			it1 = list.iterator();
@@ -3267,7 +3280,7 @@ public class ListTester {
 		}
 	}
 
-	
+
 }// end class IndexedUnsortedListTester
 
 /** Interface for builder method Lambda references used above */
@@ -3329,14 +3342,14 @@ class WrapIt {
 
 	public WrapIt previous() {
 		if (!isListIterator) { throw new UnsupportedOperationException(); }
-		
+
 		listIterator.previous();
 		return this;
 	}
 
 	public WrapIt add(Integer element) {
 		if (!isListIterator) { throw new UnsupportedOperationException(); }
-		
+
 		listIterator.add(element);
 		return this;
 	}
