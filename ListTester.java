@@ -175,7 +175,7 @@ public class ListTester {
 			// Scenario: 03
 
 			// Scenario: 04 TODO Tyler
-
+		testSingleElementList(emptyList_addA_A, "emptyList_addA_A", LIST_A, STRING_A);
 			// Scenario: 05 TODO Colin
 
 			
@@ -183,7 +183,7 @@ public class ListTester {
 			// Scenario: 12
 
 			// Scenario: 13 TODO Zion
-
+		testEmptyList(A_removeLast_emptyList, "A_removeLast_emptyList");
 			// Scenario: 14
 
 			// Scenario: 15 TODO Tyler
@@ -334,7 +334,7 @@ public class ListTester {
 	 */
 
 	 
-	/** Scenario #04: [] -> add(A) -> [A] 
+	/** Scenario #04: [] -> add(A) -> [A] Tyler
 	 * @return [A] after add(A)
 	 */
 
@@ -367,7 +367,12 @@ public class ListTester {
 	/** Scenario #13: [A] -> removeLast() -> [] 
 	 * @return [] after removeLast()
 	 */
-
+	private IndexedUnsortedList<Integer> A_removeLast_emptyList() {
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
+		list.removeLast();
+		return list;
+	}
+	private Scenario<Integer> A_removeLast_emptyList = () -> A_removeLast_emptyList();
 	/** Scenario #14: [A] -> remove(A) -> []
 	 * @return [] after remove(A)
 	 */
@@ -390,7 +395,9 @@ public class ListTester {
 	/** Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C] 
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
-
+	private IndexedUnsortedList<Integer> AB_addAfterCB_ABC() {
+		IndexedUnsortedList<Integer> list = 
+	}
 	 
 	/** Scenario #23: [A,B] -> add(1,C) -> [A,C,B] 
 	 * @return [A,C,B] after add(1,C)
