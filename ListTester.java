@@ -175,7 +175,7 @@ public class ListTester {
 			// Scenario: 03
 
 			// Scenario: 04 TODO Tyler
-
+		testSingleElementList(emptyList_addA_A, "emptyList_addA_A", LIST_A, STRING_A);
 			// Scenario: 05 TODO Colin
 
 			
@@ -334,7 +334,7 @@ public class ListTester {
 	 */
 
 	 
-	/** Scenario #04: [] -> add(A) -> [A] 
+	/** Scenario #04: [] -> add(A) -> [A] Tyler
 	 * @return [A] after add(A)
 	 */
 
