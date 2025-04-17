@@ -174,19 +174,19 @@ public class ListTester {
 		testSingleElementList(emptyList_addToFrontA_A, "emptyList_addToFrontA_A", LIST_A, STRING_A);
 			// Scenario: 03
 
-			// Scenario: 04
+			// Scenario: 04 TODO Tyler
 
-			// Scenario: 05
+			// Scenario: 05 TODO Colin
 
 			
 		//1-element to empty list
 			// Scenario: 12
 
-			// Scenario: 13
+			// Scenario: 13 TODO Zion
 
 			// Scenario: 14
 
-			// Scenario: 15
+			// Scenario: 15 TODO Tyler
 
 			// Scenario: 44
 
@@ -208,13 +208,13 @@ public class ListTester {
 
 			
 		//2-element to 1-element
-			// Scenario: 25
+			// Scenario: 25 TODO Tyra
 
 			// Scenario: 26
 
 			// Scenario: 27
 
-			// Scenario: 28
+			// Scenario: 28 TODO Kelsi
 
 			// Scenario: 29
 
@@ -226,9 +226,9 @@ public class ListTester {
 
 			
 		//2-element to 3-element
-			// Scenario: 17
+			// Scenario: 17 TODO Colin
 
-			// Scenario: 20 
+			// Scenario: 20 TODO Zion
 
 			// Scenario: 23
 
