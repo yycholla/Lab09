@@ -38,45 +38,45 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void addToFront(E element) {
-		// TODO 
+		// TODO Zion
 		modCount++; // DO NOT REMOVE ME
 		
 	}
 
 	@Override
 	public void addToRear(E element) {
-		// TODO 
+		// TODO Colin
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public void add(E element) {
-		// TODO 
+		// TODO Tyler
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public void addAfter(E element, E target) {
-		// TODO 
+		// TODO Kelsi
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public void add(int index, E element) {
-		// TODO 
+		// TODO Tyra
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public E removeFirst() {
-		// TODO 
+		// TODO Zion
 		modCount++; // DO NOT REMOVE ME
 		return null;
 	}
 
 	@Override
 	public E removeLast() {
-		// TODO 
+		// TODO Colin
 		modCount++; // DO NOT REMOVE ME
 		return null;
 	}
@@ -103,20 +103,20 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public E remove(int index) {
-		// TODO 
+		// TODO Tyler
 		modCount++; // DO NOT REMOVE ME
 		return null;
 	}
 
 	@Override
 	public void set(int index, E element) {
-		// TODO 
+		// TODO Kelsi
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public E get(int index) {
-		// TODO 
+		// TODO Tyra
 		return null;
 	}
 
@@ -140,13 +140,13 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public E first() {
-		// TODO 
+		// TODO Zion
 		return null;
 	}
 
 	@Override
 	public E last() {
-		// TODO 
+		// TODO Colin
 		return null;
 	}
 
@@ -157,20 +157,20 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO 
+		// TODO Tyler
 		return false;
 	}
 
 	@Override
 	public int size() {
-		// TODO 
+		// TODO Kelsi
 		return 0;
 	}
 
 	@Override
 	public String toString() {
 		String result = "[";
-		// TODO
+		// TODO Tyra
 		return result + "]";
 	}
 
