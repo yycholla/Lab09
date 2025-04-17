@@ -194,7 +194,7 @@ public class ListTester {
 		// Scenario: 12
 
 		// Scenario: 13
-		// testEmptyList(A_removeA_empty, "A_removeA_empty");
+		testEmptyList(A_removeLast_emptyList, "A_removeLast_emptyList");
 		// Scenario: 14
 
 		// Scenario: 15
@@ -235,7 +235,7 @@ public class ListTester {
 		// Scenario: 17
 
 		// Scenario: 20
-
+		testThreeElementList(AB_addAfterCB_ABC, "20: AB_addAfterCB_ABC", LIST_ABC, STRING_ABC);
 		// Scenario: 23
 
 		// 2-element to changed 2-element via set()
@@ -416,12 +416,12 @@ public class ListTester {
 	 *
 	 * @return [] after removeLast()
 	 */
-	private IndexedUnsortedList<Integer> A_removeLast_empty() {
+	private IndexedUnsortedList<Integer> A_removeLast_emptyList() {
 		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
 		list.removeLast();
 		return list;
 	}
-
+	private Scenario<Integer> A_removeLast_emptyList = () -> A_removeLast_emptyList();
 	/**
 	 * Scenario #14: [A] -> remove(A) -> []
 	 *
@@ -464,7 +464,12 @@ public class ListTester {
 	 *
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
-
+	private IndexedUnsortedList<Integer> AB_addAfterCB_ABC() {
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
+		list.addAfter(ELEMENT_C, ELEMENT_B);
+		return list;
+	}
+	private Scenario<Integer> AB_addAfterCB_ABC = () -> AB_addAfterCB_ABC();
 	/**
 	 * Scenario #23: [A,B] -> add(1,C) -> [A,C,B]
 	 *
