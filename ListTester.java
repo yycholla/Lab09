@@ -211,7 +211,8 @@ public class ListTester {
 
 
 		//2-element to 1-element
-			// Scenario: 25 TODO Tyra
+			// Scenario: 25
+			testSingleElementList(AB_removeFirst_B, "AB_removeFirst_B", LIST_B, STRING_B);
 
 			// Scenario: 26
 

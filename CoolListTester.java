@@ -216,7 +216,8 @@ public class CoolListTester {
 		// Scenario: 47
 
 		// 2-element to 1-element
-      // Scenario: 25 TODO Tyra
+      	// Scenario: 25
+		testSingleElementList(AB_removeFirst_B, "AB_removeFirst_B", LIST_B, STRING_B);
 
 		// Scenario: 26
 		testSingleElementList(AB_removeLast_A, "26: AB_removeLast_A", LIST_A, STRING_A);
