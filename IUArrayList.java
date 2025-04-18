@@ -40,7 +40,8 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	public void addToFront(E element) {
 		// TODO Zion
 		if (this.size() == this.array.length) { expandCapacity(); }
-
+		shiftEntries(0);
+		array[0] = element;
 		modCount++; // DO NOT REMOVE ME
 
 	}
@@ -55,24 +56,9 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public void add(E element) {
 		// TODO Tyler
-		if (this.size == this.array.length) {
-			expandCapacity();
-		}
-		int index = front;
-
-		for (int i = 0; i < count && element.compareTo(array[index]) > 0; i++) {
-			index++;
-		}
-
-		int shift = rear;
-		while (shift != index) {
-			this.array[shift] = this.array[shift-1];
-			shift--;
-		}
-
-		array[index] = element;
+		if (this.size() == this.array.length) { expandCapacity(); }
+		array[rear] = element;
 		rear++;
-		count++;
 		modCount++; // DO NOT REMOVE ME
 	}
 
@@ -126,8 +112,21 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E remove(int index) {
 		// TODO Tyler
+		if (index == NOT_FOUND) {
+			throw new NoSuchElementException();
+		}
+
+		E retVal = array[index];
+
+		rear--;
+		//shift elements
+		for (int i = index; i < rear; i++) {
+			array[i] = array[i+1];
+		}
+		array[rear] = null;
+
 		modCount++; // DO NOT REMOVE ME
-		return null;
+		return retVal;
 	}
 
 	@Override
@@ -181,7 +180,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public boolean isEmpty() {
 		// TODO Tyler
-		return false;
+		return size() == 0;
 	}
 
 	@Override
@@ -195,6 +194,25 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		String result = "[";
 		// TODO Tyra
 		return result + "]";
+	}
+
+	private void shiftEntries(int startingIndex) {
+		if (this.size() == this.array.length) { expandCapacity(); }
+
+		int index = startingIndex;
+
+		// for (int i = 0; i < this.size() && element.compareTo(array[index]) > 0; i++) { // I believe this is unnecessary because this is a search function for an ordered list
+		// 	index++;
+		// }
+
+		int shift = rear;
+
+		while (shift != index) {
+			this.array[shift] = this.array[shift-1];
+			shift--;
+		}
+
+		rear++;
 	}
 
 	// IGNORE THE FOLLOWING COMMENTED OUT CODE UNTIL LAB 10
