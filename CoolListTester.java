@@ -187,18 +187,19 @@ public class CoolListTester {
 		// Scenario: 03
 		testSingleElementList(emptyList_addToRearA_A, "3: emptyList_addToRearA_A", LIST_A, STRING_A);
 		// Scenario: 04
-
+		testSingleElementList(emptyList_addA_A, "4: emptyList_addA_A", LIST_A, STRING_A);
 		// Scenario: 05
+		testSingleElementList(emptyList_add0A_A, "5: emptyList_AddA_0", LIST_A, STRING_A);
 
 	// 1-element to empty list
 		// Scenario: 12
 
 		// Scenario: 13
-		testEmptyList(A_removeLast_emptyList, "A_removeLast_emptyList");
+		testEmptyList(A_removeLast_emptyList, "13: A_removeLast_emptyList");
 		// Scenario: 14
 
 		// Scenario: 15
-
+		testEmptyList(A_remove0_empty, "15: A_remove0A_emptyList");
 		// Scenario: 44
 
 		// 1-element to 2-element
@@ -215,7 +216,7 @@ public class CoolListTester {
 		// Scenario: 47
 
 		// 2-element to 1-element
-		// Scenario: 25
+      // Scenario: 25 TODO Tyra
 
 		// Scenario: 26
 		testSingleElementList(AB_removeLast_A, "26: AB_removeLast_A", LIST_A, STRING_A);
@@ -233,6 +234,7 @@ public class CoolListTester {
 
 		// 2-element to 3-element
 		// Scenario: 17
+		testThreeElementList(AB_addToFrontC_CAB, "17: AB_addToFrontC", LIST_CAB, STRING_CAB);
 
 		// Scenario: 20
 		testThreeElementList(AB_addAfterCB_ABC, "20: AB_addAfterCB_ABC", LIST_ABC, STRING_ABC);
@@ -354,13 +356,24 @@ public class CoolListTester {
 	 *
 	 * @return [A] after add(A)
 	 */
+	private IndexedUnsortedList<Integer> emptyList_addA_A() {
+		IndexedUnsortedList<Integer> list = newList();
+		list.add(ELEMENT_A);
+		return list;
+	}
+	private Scenario<Integer> emptyList_addA_A = () -> emptyList_addA_A();
 
 	/**
 	 * Scenario #05: [] -> add(0, A) -> [A]
 	 *
 	 * @return [A] after add(0, A)
 	 */
-
+	private IndexedUnsortedList<Integer> emptyList_add0A_A() {
+		IndexedUnsortedList<Integer> list = newList();
+		list.add(0, ELEMENT_A);
+		return list;
+	}
+	private Scenario<Integer> emptyList_add0A_A = () -> emptyList_add0A_A();
 	/**
 	 * Scenario #06: [A] -> addToFront(B) -> [B,A]
 	 *
@@ -458,7 +471,12 @@ public class CoolListTester {
 	 *
 	 * @return [C,A,B] after addToFront(C)
 	 */
-
+	private IndexedUnsortedList<Integer> AB_addToFrontC_CAB() {
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
+		list.addToFront(ELEMENT_C);
+		return list;
+	}
+	private Scenario<Integer> AB_addToFrontC_CAB = () -> AB_addToFrontC_CAB();
 	/**
 	 * Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C]
 	 *
