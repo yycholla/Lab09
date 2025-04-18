@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
  *
  * @author mvail, mhthomas, amussell (lambdas), lsevigny (iterator decorator)
  */
-public class ListTester {
+public class CoolListTester {
 	// possible lists that could be tested
 	private static enum ListToUse {
 		goodList, badList, arrayList, singleLinkedList, doubleLinkedList
