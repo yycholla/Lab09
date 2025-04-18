@@ -216,7 +216,7 @@ public class ListTester {
 		// Scenario: 47
 
 		// 2-element to 1-element
-		// Scenario: 25
+      // Scenario: 25 TODO Tyra
 
 		// Scenario: 26
 		testSingleElementList(AB_removeLast_A, "26: AB_removeLast_A", LIST_A, STRING_A);
