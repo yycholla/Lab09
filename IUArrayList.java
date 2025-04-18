@@ -48,8 +48,8 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void addToRear(E element) {
-		// TODO Colin
-		add();
+		// REVIEW Colin
+		add(element);
 		modCount++; // DO NOT REMOVE ME
 	}
 
@@ -77,16 +77,18 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E removeFirst() {
 		// TODO Zion
-		this.remove(first());
+		E retVal = this.remove(first());
 		modCount++; // DO NOT REMOVE ME
-		return null;
+		return retVal;
 	}
 
 	@Override
 	public E removeLast() {
-		// TODO Colin
+		// REVIEW Colin
+		rear--;
+		E retVal = this.remove(rear);
 		modCount++; // DO NOT REMOVE ME
-		return null;
+		return retVal;
 	}
 
 	@Override
@@ -168,8 +170,8 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public E last() {
-		// TODO Colin
-		return null;
+		// REVIEW Colin
+		return array[indexOf(last())];
 	}
 
 	@Override
