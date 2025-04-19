@@ -95,8 +95,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		rear--;
-		E retVal = this.remove(rear);
+		E retVal = this.remove(rear - 1);
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
 	}
