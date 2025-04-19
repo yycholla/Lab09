@@ -1,5 +1,7 @@
 Initial Test Plan for an IndexedUnsortedList
 
+Test to push
+
 1) no list -> constructor -> []
   Tests:
     addToFront(X) throws no Exception
