@@ -39,11 +39,10 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public void addToFront(E element) {
 		// REVIEW Zion
-		if (this.size() == this.array.length) { expandCapacity(); }
+		// if (this.size() == this.array.length) { expandCapacity(); } - CH: Included in shiftEntries
 		shiftEntries(0);
-		array[0] = element;
+		add(0, element);
 		modCount++; // DO NOT REMOVE ME
-
 	}
 
 	@Override
@@ -56,46 +55,39 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public void add(E element) {
 		// REVIEW Tyler
-		if (this.size() == this.array.length) { expandCapacity(); }
-		array[rear] = element;
-		rear++;
+		add(rear, element);
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public void addAfter(E element, E target) {
 		// REVIEW Kelsi
-		if (isEmpty()) {
-            throw new NoSuchElementException("The list is empty.");
-        }
-
-        int targetIndex = indexOf(target);
-        if (targetIndex == NOT_FOUND) {
-            throw new NoSuchElementException("The target element is not in the list.");
-        }
-
-        if (rear == array.length) {
-            expandCapacity();
-        }
-
-        for (int i = rear; i > targetIndex + 1; i--) {
-            array[i] = array[i - 1];
-        }
-
-        array[targetIndex + 1] = element;
-        rear++;
+		emptyCheck();
+		if (!contains(target)) {
+			throw new NoSuchElementException();
+		}
+		add(indexOf(target) + 1, element);
         modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public void add(int index, E element) {
 		// TODO Tyra
+		if (this.size() == this.array.length) {
+			expandCapacity();
+		}
+		rangeCheck(index);
+		shiftEntries(index);
+		array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public E removeFirst() {
 		// REVIEW Zion
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
 		E retVal = this.remove(first());
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
@@ -104,8 +96,12 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E removeLast() {
 		// REVIEW Colin
-		rear--;
-		E retVal = this.remove(rear);
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		// System.out.println("__REAR__:" + rear);
+		// System.out.println("___Last___: " + last() );
+		E retVal = this.remove(rear-1);
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
 	}
@@ -121,7 +117,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 		rear--;
 		//shift elements
-		for (int i = index; i < rear; i++) {
+		for (int i = index; i <= rear; i++) {
 			array[i] = array[i+1];
 		}
 		array[rear] = null;
@@ -132,15 +128,15 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	public E remove(int index) {
 		// REVIEW Tyler
-		if (index < 0 || index >= rear) { // ***CORRECTED!***
-			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
+		if (index < 0 || index > rear) { // ***CORRECTED!***
+			throw new IndexOutOfBoundsException();
 		}
 
 		E retVal = array[index];
 
 		rear--;
 		//shift elements
-		for (int i = index; i < rear; i++) {
+		for (int i = index; i <= rear; i++) {
 			array[i] = array[i+1];
 		}
 		array[rear] = null;
@@ -162,38 +158,40 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E get(int index) {
 		// TODO Tyra
-		return null;
+		if (index < 0 || index >= rear) {
+			throw new IndexOutOfBoundsException();
+		}
+		return array[index];
 	}
 
 	@Override
 	public int indexOf(E element) {
-		int index = NOT_FOUND;
-
-		if (!isEmpty()) {
-			int i = 0;
-			while (index == NOT_FOUND && i < rear) {
-				if (element.equals(array[i])) {
-					index = i;
-				} else {
-					i++;
-				}
+		if (isEmpty()) {
+			return NOT_FOUND;
+		}
+		for (int i = 0; i < rear; i++) {
+			if (element.equals(array[i])) {
+				return i;
 			}
 		}
 
-		return index;
+		return NOT_FOUND;
 	}
 
 	@Override
 	public E first() {
 		// REVIEW Zion
-		if (isEmpty()) { throw new NoSuchElementException(); }
+		emptyCheck();
 		return array[0];
 	}
 
 	@Override
 	public E last() {
 		// REVIEW Colin
-		return get(rear);
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		return get(rear - 1);
 	}
 
 	@Override
@@ -217,6 +215,9 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	public String toString() {
 		String result = "[";
 		// TODO Tyra
+		for (E e : array) {
+			System.out.print(e +  ", ");
+		}
 		return result + "]";
 	}
 
@@ -227,8 +228,20 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
         for (int i = rear; i > startingIndex; i--) {
             array[i] = array[i - 1];
         }
-        rear++;
+        this.rear++;
     }
+
+	private void emptyCheck() {
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+	}
+
+	private void rangeCheck(int index) {
+		if (index < 0 || index > rear) {
+			throw new IndexOutOfBoundsException();
+		}
+	}
 	// POSSIBLY MORE CORRECT IMPLMENTATION FOR THIS ONE?? ~ Kelsi
 	// if (rear == array.length) {
     //         expandCapacity();
