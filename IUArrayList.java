@@ -89,7 +89,14 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void add(int index, E element) {
-		// TODO Tyra
+		if (index > rear || index < 0) {
+			throw new IndexOutOfBoundsException();
+		}
+		if (rear == array.length) {
+			expandCapacity();
+		}
+		System.arraycopy(array, index, array, index  + 1, rear - index);
+		array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
 
@@ -161,8 +168,10 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public E get(int index) {
-		// TODO Tyra
-		return null;
+		if (index >= rear) {
+			throw new IndexOutOfBoundsException();
+		}
+		return array[index];
 	}
 
 	@Override
@@ -216,7 +225,13 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public String toString() {
 		String result = "[";
-		// TODO Tyra
+		for (int i = 0; i < rear - 1; i++) {
+			result += array[i] + ", ";
+		}
+		if (rear != 0) {
+			result += array[rear - 1];
+		}
+		result += "]";
 		return result + "]";
 	}
 
