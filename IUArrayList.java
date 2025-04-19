@@ -40,7 +40,6 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	public void addToFront(E element) {
 		// REVIEW Zion
 		// if (this.size() == this.array.length) { expandCapacity(); } - CH: Included in shiftEntries
-		shiftEntries(0);
 		add(0, element);
 		modCount++; // DO NOT REMOVE ME
 	}
@@ -48,7 +47,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public void addToRear(E element) {
 		// REVIEW Colin
-		add(element);
+		add(rear, element);
 		modCount++; // DO NOT REMOVE ME
 	}
 
@@ -73,9 +72,6 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public void add(int index, E element) {
 		// TODO Tyra
-		if (this.size() == this.array.length) {
-			expandCapacity();
-		}
 		rangeCheck(index);
 		shiftEntries(index);
 		array[index] = element;
@@ -99,9 +95,8 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		if (isEmpty()) {
 			throw new NoSuchElementException();
 		}
-		// System.out.println("__REAR__:" + rear);
-		// System.out.println("___Last___: " + last() );
-		E retVal = this.remove(rear-1);
+		rear--;
+		E retVal = this.remove(rear);
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
 	}
@@ -128,7 +123,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	public E remove(int index) {
 		// REVIEW Tyler
-		if (index < 0 || index > rear) { // ***CORRECTED!***
+		if (index < 0 || index >= rear) { // ***CH- Corrected corrections***
 			throw new IndexOutOfBoundsException();
 		}
 
@@ -216,7 +211,9 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		String result = "[";
 		// TODO Tyra
 		for (E e : array) {
-			System.out.print(e +  ", ");
+			if (e != null) {
+				result += e +  ", ";
+			}
 		}
 		return result + "]";
 	}
@@ -225,7 +222,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		if (rear == array.length) {
             expandCapacity();
         }
-        for (int i = rear; i > startingIndex; i--) {
+        for (int i = rear; i > startingIndex && i != 0; i--) {
             array[i] = array[i - 1];
         }
         this.rear++;
