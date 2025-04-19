@@ -38,7 +38,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void addToFront(E element) {
-		// TODO Zion
+		// REVIEW Zion
 		if (this.size() == this.array.length) { expandCapacity(); }
 		shiftEntries(0);
 		array[0] = element;
@@ -55,7 +55,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void add(E element) {
-		// TODO Tyler
+		// REVIEW Tyler
 		if (this.size() == this.array.length) { expandCapacity(); }
 		array[rear] = element;
 		rear++;
@@ -64,8 +64,27 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void addAfter(E element, E target) {
-		// TODO Kelsi
-		modCount++; // DO NOT REMOVE ME
+		// REVIEW Kelsi
+		if (isEmpty()) {
+            throw new NoSuchElementException("The list is empty.");
+        }
+
+        int targetIndex = indexOf(target);
+        if (targetIndex == NOT_FOUND) {
+            throw new NoSuchElementException("The target element is not in the list.");
+        }
+
+        if (rear == array.length) {
+            expandCapacity();
+        }
+
+        for (int i = rear; i > targetIndex + 1; i--) {
+            array[i] = array[i - 1];
+        }
+
+        array[targetIndex + 1] = element;
+        rear++;
+        modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
@@ -76,7 +95,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public E removeFirst() {
-		// TODO Zion
+		// REVIEW Zion
 		E retVal = this.remove(first());
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
@@ -111,11 +130,10 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		return retVal;
 	}
 
-	@Override
 	public E remove(int index) {
-		// TODO Tyler
-		if (index == NOT_FOUND) {
-			throw new NoSuchElementException();
+		// REVIEW Tyler
+		if (index < 0 || index >= rear) { // ***CORRECTED!***
+			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
 		}
 
 		E retVal = array[index];
@@ -133,7 +151,11 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void set(int index, E element) {
-		// TODO Kelsi
+		// REVIEW Kelsi
+		if (index < 0 || index >= rear) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
+        }
+        array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
 
@@ -163,7 +185,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public E first() {
-		// TODO Zion
+		// REVIEW Zion
 		if (isEmpty()) { throw new NoSuchElementException(); }
 		return array[0];
 	}
@@ -171,7 +193,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E last() {
 		// REVIEW Colin
-		return get(indexOf(last()));
+		return get(rear);
 	}
 
 	@Override
@@ -181,14 +203,14 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Tyler
+		// REVIEW Tyler
 		return size() == 0;
 	}
 
 	@Override
 	public int size() {
-		// TODO Kelsi
-		return 0;
+		// REVIEW Kelsi
+		return rear;
 	}
 
 	@Override
@@ -199,23 +221,23 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	}
 
 	private void shiftEntries(int startingIndex) {
-		if (this.size() == this.array.length) { expandCapacity(); }
-
-		int index = startingIndex;
-
-		// for (int i = 0; i < this.size() && element.compareTo(array[index]) > 0; i++) { // I believe this is unnecessary because this is a search function for an ordered list
-		// 	index++;
-		// }
-
-		int shift = rear;
-
-		while (shift != index) {
-			this.array[shift] = this.array[shift-1];
-			shift--;
-		}
-
-		rear++;
-	}
+		if (rear == array.length) {
+            expandCapacity();
+        }
+        for (int i = rear; i > startingIndex; i--) {
+            array[i] = array[i - 1];
+        }
+        rear++;
+    }
+	// POSSIBLY MORE CORRECT IMPLMENTATION FOR THIS ONE?? ~ Kelsi
+	// if (rear == array.length) {
+    //         expandCapacity();
+    //     }
+    //     for (int i = rear; i > startingIndex; i--) {
+    //         array[i] = array[i - 1];
+    //     }
+    //     rear++;
+    // }
 
 	// IGNORE THE FOLLOWING COMMENTED OUT CODE UNTIL LAB 10
 	// DON'T DELETE ME, HOWEVER!!!
