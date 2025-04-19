@@ -232,7 +232,7 @@ public class ListTester {
 
 		//2-element to 3-element
 			// Scenario: 17 TODO Colin
-		testThreeElementList(AB_addToFrontC, "AB_addToFrontC", LIST_CAB, STRING_CAB);
+		testThreeElementList(AB_addToFrontC_CAB, "17: AB_addToFrontC_CAB", LIST_CAB, STRING_CAB);
 
 			// Scenario: 20 TODO Zion
 
@@ -330,12 +330,12 @@ public class ListTester {
 	 * @return [A] after addToFront(A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_addToFrontA_A() {
-		IndexedUnsortedList<Integer> list = newList(); // Start with a new empty list
-		list.addToFront(ELEMENT_A);
-		return list;
-	}
-	private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
-
+        IndexedUnsortedList<Integer> list = newList(); 
+        list.addToFront(ELEMENT_A);
+        return list;
+    }
+    private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
+	
 	/** Scenario #03: [] -> addToRear(A) -> [A]
 	 * @return [A] after addToRear(A)
 	 */
@@ -351,22 +351,22 @@ public class ListTester {
 	/** Scenario #04: [] -> add(A) -> [A] Tyler
 	 * @return [A] after add(A)
 	 */
-	private IndexedUnsortedList<Integer> emptyList_addA_A() {
-		IndexedUnsortedList<Integer> list = emptyList_addA_A();
-		list.addToFront(ELEMENT_B);
-		return list;
-	}
-    private Scenario<Integer> emptyList_addA_A = () -> emptyList_addA_A(); // ***THIS IS ESSENTIAL***
+    private IndexedUnsortedList<Integer> emptyList_addA_A() {
+        IndexedUnsortedList<Integer> list = newList();
+        list.add(ELEMENT_A);
+        return list;
+    }
+    private Scenario<Integer> emptyList_addA_A = () -> emptyList_addA_A();
 
 	/** Scenario #05: [] -> add(0, A) -> [A]
 	 * @return [A] after add(0, A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_addA_0() {
-		IndexedUnsortedList<Integer> list = newList();
+        IndexedUnsortedList<Integer> list = newList();
         list.add(0, ELEMENT_A);
         return list;
-	}
-	private Scenario<Integer> emptyList_addA_0 = () -> emptyList_addA_0();
+    }
+    private Scenario<Integer> emptyList_addA_0 = () -> emptyList_addA_0();
 
 	/** Scenario #06: [A] -> addToFront(B) -> [B,A]
 	 * @return [B,A] after addToFront(B)
@@ -432,12 +432,12 @@ public class ListTester {
 	 * @return [C,A,B] after addToFront(C)
 	 */
 	private IndexedUnsortedList<Integer> AB_addToFrontC_CAB() {
-        IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
-        list.addToFront(ELEMENT_C);
-        return list;
-    }
-    private Scenario<Integer> AB_addToFrontC_CAB = () -> AB_addToFrontC_CAB();
-
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+		return list;
+	}
+	
+	private Scenario<Integer> AB_addToFrontC_CAB = () -> AB_addToFrontC_CAB();
+	
 	/** Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C]
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
