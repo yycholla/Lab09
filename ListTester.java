@@ -214,12 +214,10 @@ public class ListTester {
 			// Scenario: 25 TODO Tyra
 
 			// Scenario: 26
-			testSingleElementList(AB_removeLast_A, "26: AB_removeLast_A", LIST_A, STRING_A);
 
 			// Scenario: 27
 
 			// Scenario: 28 TODO Kelsi
-			testSingleElementList(AB_removeB_A, "28: AB_removeB_A", LIST_A, STRING_A); // ADD THIS LINE
 
 			// Scenario: 29
 
@@ -232,7 +230,7 @@ public class ListTester {
 
 		//2-element to 3-element
 			// Scenario: 17 TODO Colin
-		testThreeElementList(AB_addToFrontC_CAB, "17: AB_addToFrontC_CAB", LIST_CAB, STRING_CAB);
+		testThreeElementList(AB_addToFrontC, "AB_addToFrontC", LIST_CAB, STRING_CAB);
 
 			// Scenario: 20 TODO Zion
 
@@ -298,28 +296,28 @@ public class ListTester {
 	 * @return [] after constructor
 	 */
 	private IndexedUnsortedList<Integer> newList() {
-        IndexedUnsortedList<Integer> listToUse;
-        switch (LIST_TO_USE) {
-            case goodList:
-                listToUse = new GoodList<Integer>();
-                break;
-            case badList:
-                listToUse = new BadList<Integer>();
-                break;
-            case arrayList:
-                listToUse = new IUArrayList<Integer>(); // ***THIS LINE IS KEY***
-                break;
-            // case singleLinkedList:
-            //  listToUse = new IUSingleLinkedList<Integer>();
-            //  break;
-            // case doubleLinkedList:
-            //  listToUse = new IUDoubleLinkedList<Integer>();
-            //  break;
-            default:
-                listToUse = null;
-        }
-        return listToUse;
-    }
+		IndexedUnsortedList<Integer> listToUse;
+		switch (LIST_TO_USE) {
+		case goodList:
+			listToUse = new GoodList<Integer>();
+			break;
+		case badList:
+			listToUse = new BadList<Integer>();
+			break;
+		// case arrayList:
+		// 	listToUse = new IUArrayList<Integer>();
+		// 	break;
+		// case singleLinkedList:
+		// 	listToUse = new IUSingleLinkedList<Integer>();
+		// 	break;
+		// case doubleLinkedList:
+		// 	listToUse = new IUDoubleLinkedList<Integer>();
+		// 	break;
+		default:
+			listToUse = null;
+		}
+		return listToUse;
+	}
 	// The following creates a "lambda" reference that allows us to pass a scenario
 	//  builder method as an argument. We covered in lecture how it works - however, if you are
 	//  struggling with it, just make sure each scenario building method has a corresponding Scenario
@@ -330,43 +328,32 @@ public class ListTester {
 	 * @return [A] after addToFront(A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_addToFrontA_A() {
-        IndexedUnsortedList<Integer> list = newList(); 
-        list.addToFront(ELEMENT_A);
-        return list;
-    }
-    private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
-	
+		// TODO: Implement change scenario logic
+		return null;
+	}
+	private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
+
 	/** Scenario #03: [] -> addToRear(A) -> [A]
 	 * @return [A] after addToRear(A)
 	 */
-
-	private IndexedUnsortedList<Integer> emptyList_addToRearA_A() {
-		IndexedUnsortedList<Integer> list = newList();
-		list.addToRear(ELEMENT_A);
-		return list;
-	}
-	private Scenario<Integer> emptyList_addToRearA_A = () -> emptyList_addToRearA_A();
 
 
 	/** Scenario #04: [] -> add(A) -> [A] Tyler
 	 * @return [A] after add(A)
 	 */
-    private IndexedUnsortedList<Integer> emptyList_addA_A() {
-        IndexedUnsortedList<Integer> list = newList();
-        list.add(ELEMENT_A);
-        return list;
-    }
-    private Scenario<Integer> emptyList_addA_A = () -> emptyList_addA_A();
+	private IndexedUnsortedList<Integer> emptyList_addA_A() {
+		IndexedUnsortedList<Integer> list = emptyList_addA_A();
+		list.addToFront(ELEMENT_B);
+		return list;
+	}
+	private Scenario<Integer> A_addToFrontB_BA = () -> A_addToFrontB_BA();
 
 	/** Scenario #05: [] -> add(0, A) -> [A]
 	 * @return [A] after add(0, A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_addA_0() {
-        IndexedUnsortedList<Integer> list = newList();
-        list.add(0, ELEMENT_A);
-        return list;
-    }
-    private Scenario<Integer> emptyList_addA_0 = () -> emptyList_addA_0();
+		IndexedUnsortedList<
+	}
 
 	/** Scenario #06: [A] -> addToFront(B) -> [B,A]
 	 * @return [B,A] after addToFront(B)
@@ -382,24 +369,9 @@ public class ListTester {
 	 * @return [A,B] after addToRear(B)
 	 */
 
-	 private IndexedUnsortedList<Integer> A_addToRearB_AB() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
-		list.addToRear(ELEMENT_B);
-		return list;
-	}
-	private Scenario<Integer> A_addToRearB_AB = () -> A_addToRearB_AB();
-
-
 	/** Scenario #10: [A] -> add(0,B) -> [B,A]
 	 * @return [B,A] after add(0,B)
 	 */
-
-	 private IndexedUnsortedList<Integer> A_add0B_BA() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
-		list.add(0, ELEMENT_B);
-		return list;
-	}
-	private Scenario<Integer> A_add0B_BA = () -> A_add0B_BA();
 
 	/** Scenario #12: [A] -> removeFirst() -> []
 	 * @return [] after removeFirst()
@@ -431,22 +403,14 @@ public class ListTester {
 	/** Scenario #17: [A,B] -> addToFront(C) -> [C,A,B]
 	 * @return [C,A,B] after addToFront(C)
 	 */
-	private IndexedUnsortedList<Integer> AB_addToFrontC_CAB() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
-		return list;
-	}
-	
-	private Scenario<Integer> AB_addToFrontC_CAB = () -> AB_addToFrontC_CAB();
-	
+
+
 	/** Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C]
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
 	private IndexedUnsortedList<Integer> AB_addAfterCB_ABC() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
-		list.addAfter(ELEMENT_C, ELEMENT_B);
-		return list;
+		IndexedUnsortedList<Integer> list =
 	}
-	private Scenario<Integer> AB_addAfterCB_ABC = () -> AB_addAfterCB_ABC();
 
 	/** Scenario #23: [A,B] -> add(1,C) -> [A,C,B]
 	 * @return [A,C,B] after add(1,C)
@@ -461,12 +425,7 @@ public class ListTester {
 	/** Scenario #26: [A,B] -> removeLast() -> [A]
 	 * @return [A] after removeLast()
 	 */
-	private IndexedUnsortedList<Integer> AB_removeLast_A() {
-        IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
-        list.removeLast();
-        return list;
-    }
-    private Scenario<Integer> AB_removeLast_A = () -> AB_removeLast_A();
+
 
 	/** Scenario #27: [A,B] -> remove(A) -> [B]
 	 * @return [B] after remove(A)
@@ -477,11 +436,6 @@ public class ListTester {
 	 * @return [A] after remove(B)
 	 */
 
-	 private IndexedUnsortedList<Integer> AB_removeB_A() {
-        IndexedUnsortedList<Integer> list = A_addToRearB_AB();
-        return list;
-    }
-    private Scenario<Integer> AB_removeB_A = () -> AB_removeB_A();
 
 	/** Scenario #29: [A,B] -> remove(0) -> [B]
 	 * @return [B] after remove(0)

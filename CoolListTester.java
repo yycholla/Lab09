@@ -146,133 +146,148 @@ public class ListTester {
 	 * Run tests to confirm required functionality from list constructors and
 	 * methods
 	 */
+
+	/** Run tests to confirm required functionality from list constructors and methods */
 	private void runTests() {
-		// Possible list contents after a scenario has been set up
-		Integer[] LIST_A = { ELEMENT_A };
+		//Possible list contents after a scenario has been set up
+		Integer[] LIST_A = {ELEMENT_A};
 		String STRING_A = "A";
-		Integer[] LIST_B = { ELEMENT_B };
+		Integer[] LIST_B = {ELEMENT_B};
 		String STRING_B = "B";
-		Integer[] LIST_C = { ELEMENT_C };
+		Integer[] LIST_C = {ELEMENT_C};
 		String STRING_C = "C";
-		Integer[] LIST_BA = { ELEMENT_B, ELEMENT_A };
+		Integer[] LIST_BA = {ELEMENT_B, ELEMENT_A};
 		String STRING_BA = "BA";
-		Integer[] LIST_AB = { ELEMENT_A, ELEMENT_B };
+		Integer[] LIST_AB = {ELEMENT_A, ELEMENT_B};
 		String STRING_AB = "AB";
-		Integer[] LIST_BC = { ELEMENT_B, ELEMENT_C };
+		Integer[] LIST_BC = {ELEMENT_B, ELEMENT_C};
 		String STRING_BC = "BC";
-		Integer[] LIST_AC = { ELEMENT_A, ELEMENT_C };
+		Integer[] LIST_AC = {ELEMENT_A, ELEMENT_C};
 		String STRING_AC = "AC";
-		Integer[] LIST_CB = { ELEMENT_C, ELEMENT_B };
+		Integer[] LIST_CB = {ELEMENT_C, ELEMENT_B};
 		String STRING_CB = "CB";
-		Integer[] LIST_CAB = { ELEMENT_C, ELEMENT_A, ELEMENT_B };
+		Integer[] LIST_CAB = {ELEMENT_C, ELEMENT_A, ELEMENT_B};
 		String STRING_CAB = "CAB";
-		Integer[] LIST_ABC = { ELEMENT_A, ELEMENT_B, ELEMENT_C };
+		Integer[] LIST_ABC = {ELEMENT_A, ELEMENT_B, ELEMENT_C};
 		String STRING_ABC = "ABC";
-		Integer[] LIST_ACB = { ELEMENT_A, ELEMENT_C, ELEMENT_B };
+		Integer[] LIST_ACB = {ELEMENT_A, ELEMENT_C, ELEMENT_B};
 		String STRING_ACB = "ACB";
-		Integer[] LIST_DBC = { ELEMENT_D, ELEMENT_B, ELEMENT_C };
+		Integer[] LIST_DBC = {ELEMENT_D, ELEMENT_B, ELEMENT_C};
 		String STRING_DBC = "DBC";
-		Integer[] LIST_ADC = { ELEMENT_A, ELEMENT_D, ELEMENT_C };
+		Integer[] LIST_ADC = {ELEMENT_A, ELEMENT_D, ELEMENT_C};
 		String STRING_ADC = "ADC";
-		Integer[] LIST_ABD = { ELEMENT_A, ELEMENT_B, ELEMENT_D };
+		Integer[] LIST_ABD = {ELEMENT_A, ELEMENT_B, ELEMENT_D};
 		String STRING_ABD = "ABD";
 
-		// newly constructed empty list
-		// Scenario: 01
-		testEmptyList(newList, "1: newList");
+		//newly constructed empty list
+			// Scenario: 01
+		testEmptyList(newList, "newList");
 
-		// empty to 1-element list
-		// Scenario: 02
-		testSingleElementList(emptyList_addToFrontA_A, "2: emptyList_addToFrontA_A", LIST_A, STRING_A);
-		// Scenario: 03
-		testSingleElementList(emptyList_addToRearA_A, "3: emptyList_addToRearA_A", LIST_A, STRING_A);
-		// Scenario: 04
-		testSingleElementList(emptyList_addA_A, "4: emptyList_addA_A", LIST_A, STRING_A);
-		// Scenario: 05
-		testSingleElementList(emptyList_add0A_A, "5: emptyList_AddA_0", LIST_A, STRING_A);
+		//empty to 1-element list
+			// Scenario: 02
+		testSingleElementList(emptyList_addToFrontA_A, "emptyList_addToFrontA_A", LIST_A, STRING_A);
+			// Scenario: 03
 
-	// 1-element to empty list
-		// Scenario: 12
+			// Scenario: 04 TODO Tyler
+		testSingleElementList(emptyList_addA_A, "emptyList_addA_A", LIST_A, STRING_A);
+			// Scenario: 05 TODO Colin
+		testSingleElementList(emptyList_addA_0, "emptyList_AddA_0", LIST_A, STRING_A);
 
-		// Scenario: 13
-		testEmptyList(A_removeLast_emptyList, "13: A_removeLast_emptyList");
-		// Scenario: 14
 
-		// Scenario: 15
-		testEmptyList(A_remove0_empty, "15: A_remove0A_emptyList");
-		// Scenario: 44
+		//1-element to empty list
+			// Scenario: 12
 
-		// 1-element to 2-element
-		// Scenario: 06
-		testTwoElementList(A_addToFrontB_BA, "6: A_addToFrontB_BA", LIST_BA, STRING_BA);
-		// Scenario: 07
-		testTwoElementList(A_addToRearB_AB, "7: A_addToRearB_AB", LIST_AB, STRING_AB);
-		// Scenario: 10
-		testTwoElementList(A_add0B_BA, "10: A_add0B_BA", LIST_BA, STRING_BA);
-		// 1-element to changed 1-element via set()
-		// Scenario: 16
+			// Scenario: 13 TODO Zion
+		testEmptyList(A_removeLast_emptyList, "A_removeLast_emptyList");
+			// Scenario: 14
 
-		// 2-element to empty list
-		// Scenario: 47
+			// Scenario: 15 TODO Tyler
 
-		// 2-element to 1-element
-      // Scenario: 25 TODO Tyra
+			// Scenario: 44
 
-		// Scenario: 26
-		testSingleElementList(AB_removeLast_A, "26: AB_removeLast_A", LIST_A, STRING_A);
-		// Scenario: 27
 
-		// Scenario: 28
+		//1-element to 2-element
+			// Scenario: 06
+		testTwoElementList(A_addToFrontB_BA, "A_addToFrontB_BA", LIST_BA, STRING_BA);
+			// Scenario: 07
 
-		// Scenario: 29
+			// Scenario: 10
 
-		// Scenario: 30
 
-		// Scenario: 45
+		//1-element to changed 1-element via set()
+			// Scenario: 16
 
-		// Scenario: 46
 
-		// 2-element to 3-element
-		// Scenario: 17
-		testThreeElementList(AB_addToFrontC_CAB, "17: AB_addToFrontC", LIST_CAB, STRING_CAB);
+		//2-element to empty list
+			// Scenario: 47
 
-		// Scenario: 20
-		testThreeElementList(AB_addAfterCB_ABC, "20: AB_addAfterCB_ABC", LIST_ABC, STRING_ABC);
-		// Scenario: 23
 
-		// 2-element to changed 2-element via set()
+		//2-element to 1-element
+			// Scenario: 25 TODO Tyra
 
-		// 3-element to empty list
-		// Scenario: 54
+			// Scenario: 26
+			testSingleElementList(AB_removeLast_A, "26: AB_removeLast_A", LIST_A, STRING_A);
 
-		// 3-element to 1-element
-		// Scenario: 51
+			// Scenario: 27
 
-		// Scenario: 52
+			// Scenario: 28 TODO Kelsi
+			testSingleElementList(AB_removeB_A, "28: AB_removeB_A", LIST_A, STRING_A); // ADD THIS LINE
 
-		// Scenario: 53
+			// Scenario: 29
 
-		// 3-element to 2-element
-		// Scenario: 33
+			// Scenario: 30
 
-		// Scenario: 37
+			// Scenario: 45
 
-		// Scenario: 39
+			// Scenario: 46
 
-		// Scenario: 48
 
-		// Scenario: 49
+		//2-element to 3-element
+			// Scenario: 17 TODO Colin
+		testThreeElementList(AB_addToFrontC_CAB, "17: AB_addToFrontC_CAB", LIST_CAB, STRING_CAB);
 
-		// Scenario: 50
+			// Scenario: 20 TODO Zion
 
-		// 3-element to changed 3-element via set()
+			// Scenario: 23
 
-		// List Iterator Scenarios
+
+		//2-element to changed 2-element via set()
+
+		//3-element to empty list
+			// Scenario: 54
+
+
+		//3-element to 1-element
+			// Scenario: 51
+
+			// Scenario: 52
+
+			// Scenario: 53
+
+
+		//3-element to 2-element
+			// Scenario: 33
+
+			// Scenario: 37
+
+			// Scenario: 39
+
+			// Scenario: 48
+
+			// Scenario: 49
+
+			// Scenario: 50
+
+
+		//3-element to changed 3-element via set()
+
+		//List Iterator Scenarios
 		if (SUPPORTS_LIST_ITERATOR) {
-			//add seneroise here... // Classic Sevigny typo ;)
+			// Place List Iterator Scenarios Here...
 		}
 
-		// Iterator concurrency tests
+
+		//Iterator concurrency tests
 		// test_IterConcurrency();
 		if (SUPPORTS_LIST_ITERATOR) {
 			test_ListIterConcurrency();
@@ -319,64 +334,54 @@ public class ListTester {
 	}
 
 	// The following creates a "lambda" reference that allows us to pass a scenario
-	// builder method as an argument. We covered in lecture how it works - however,
-	// if you are
-	// struggling with it, just make sure each scenario building method has a
-	// corresponding Scenario
-	// assignment statement as in these examples.
+	//  builder method as an argument. We covered in lecture how it works - however, if you are
+	//  struggling with it, just make sure each scenario building method has a corresponding Scenario
+	//  assignment statement as in these examples.
 	private Scenario<Integer> newList = () -> newList();
 
-	/**
-	 * Scenario #02: [] -> addToFront(A) -> [A]
-	 *
+	/** Scenario #02: [] -> addToFront(A) -> [A]
 	 * @return [A] after addToFront(A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_addToFrontA_A() {
-		IndexedUnsortedList<Integer> list = newList();
-		list.addToFront(ELEMENT_A);
-		return list;
-	}
-	private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
-
-	/**
-	 * Scenario #03: [] -> addToRear(A) -> [A]
-	 *
+        IndexedUnsortedList<Integer> list = newList(); 
+        list.addToFront(ELEMENT_A);
+        return list;
+    }
+    private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
+	
+	/** Scenario #03: [] -> addToRear(A) -> [A]
 	 * @return [A] after addToRear(A)
 	 */
+
 	private IndexedUnsortedList<Integer> emptyList_addToRearA_A() {
 		IndexedUnsortedList<Integer> list = newList();
 		list.addToRear(ELEMENT_A);
 		return list;
 	}
-
 	private Scenario<Integer> emptyList_addToRearA_A = () -> emptyList_addToRearA_A();
 
-	/**
-	 * Scenario #04: [] -> add(A) -> [A]
-	 *
+
+	/** Scenario #04: [] -> add(A) -> [A] Tyler
 	 * @return [A] after add(A)
 	 */
-	private IndexedUnsortedList<Integer> emptyList_addA_A() {
-		IndexedUnsortedList<Integer> list = newList();
-		list.add(ELEMENT_A);
-		return list;
-	}
-	private Scenario<Integer> emptyList_addA_A = () -> emptyList_addA_A();
+    private IndexedUnsortedList<Integer> emptyList_addA_A() {
+        IndexedUnsortedList<Integer> list = newList();
+        list.add(ELEMENT_A);
+        return list;
+    }
+    private Scenario<Integer> emptyList_addA_A = () -> emptyList_addA_A();
 
-	/**
-	 * Scenario #05: [] -> add(0, A) -> [A]
-	 *
+	/** Scenario #05: [] -> add(0, A) -> [A]
 	 * @return [A] after add(0, A)
 	 */
-	private IndexedUnsortedList<Integer> emptyList_add0A_A() {
-		IndexedUnsortedList<Integer> list = newList();
-		list.add(0, ELEMENT_A);
-		return list;
-	}
-	private Scenario<Integer> emptyList_add0A_A = () -> emptyList_add0A_A();
-	/**
-	 * Scenario #06: [A] -> addToFront(B) -> [B,A]
-	 *
+	private IndexedUnsortedList<Integer> emptyList_addA_0() {
+        IndexedUnsortedList<Integer> list = newList();
+        list.add(0, ELEMENT_A);
+        return list;
+    }
+    private Scenario<Integer> emptyList_addA_0 = () -> emptyList_addA_0();
+
+	/** Scenario #06: [A] -> addToFront(B) -> [B,A]
 	 * @return [B,A] after addToFront(B)
 	 */
 	private IndexedUnsortedList<Integer> A_addToFrontB_BA() {
@@ -386,47 +391,34 @@ public class ListTester {
 	}
 	private Scenario<Integer> A_addToFrontB_BA = () -> A_addToFrontB_BA();
 
-	/**
-	 * Scenario #07: [A] -> addToRear(B) -> [A,B]
-	 *
+	/** Scenario #07: [A] -> addToRear(B) -> [A,B]
 	 * @return [A,B] after addToRear(B)
 	 */
 
-	private IndexedUnsortedList<Integer> A_addToRearB_AB() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
+	 private IndexedUnsortedList<Integer> A_addToRearB_AB() {
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
 		list.addToRear(ELEMENT_B);
 		return list;
 	}
 	private Scenario<Integer> A_addToRearB_AB = () -> A_addToRearB_AB();
 
-	/**
-	 * Scenario #10: [A] -> add(0,B) -> [B,A]
-	 *
+
+	/** Scenario #10: [A] -> add(0,B) -> [B,A]
 	 * @return [B,A] after add(0,B)
 	 */
 
-	private IndexedUnsortedList<Integer> A_add0B_BA() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
+	 private IndexedUnsortedList<Integer> A_add0B_BA() {
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
 		list.add(0, ELEMENT_B);
 		return list;
 	}
 	private Scenario<Integer> A_add0B_BA = () -> A_add0B_BA();
 
-	/**
-	 * Scenario #12: [A] -> removeFirst() -> []
-	 *
+	/** Scenario #12: [A] -> removeFirst() -> []
 	 * @return [] after removeFirst()
 	 */
 
-	private IndexedUnsortedList<Integer> A_removeFirst_empty() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
-		list.removeFirst();
-		return list;
-	}
-
-	/**
-	 * Scenario #13: [A] -> removeLast() -> []
-	 *
+	/** Scenario #13: [A] -> removeLast() -> []
 	 * @return [] after removeLast()
 	 */
 	private IndexedUnsortedList<Integer> A_removeLast_emptyList() {
@@ -435,51 +427,31 @@ public class ListTester {
 		return list;
 	}
 	private Scenario<Integer> A_removeLast_emptyList = () -> A_removeLast_emptyList();
-	/**
-	 * Scenario #14: [A] -> remove(A) -> []
-	 *
+	/** Scenario #14: [A] -> remove(A) -> []
 	 * @return [] after remove(A)
 	 */
 
-	private IndexedUnsortedList<Integer> A_removeA_empty() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
-		list.remove(ELEMENT_A);
-		return list;
-	}
-	private Scenario<Integer> A_removeA_empty = () -> A_removeA_empty();
-
-	/**
-	 * Scenario #15: [A] -> remove(0) -> []
-	 *
+	/** Scenario #15: [A] -> remove(0) -> []
 	 * @return [] after remove(0)
 	 */
-	private IndexedUnsortedList<Integer> A_remove0_empty() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
-		list.remove(0);
-		return list;
-	}
-	private Scenario<Integer> A_remove0_empty = () -> A_remove0_empty();
 
-	/**
-	 * Scenario #16: [A] -> set(0,B) -> [B]
-	 *
+
+	/** Scenario #16: [A] -> set(0,B) -> [B]
 	 * @return [B] after set(0,B)
 	 */
 
-	/**
-	 * Scenario #17: [A,B] -> addToFront(C) -> [C,A,B]
-	 *
+
+	/** Scenario #17: [A,B] -> addToFront(C) -> [C,A,B]
 	 * @return [C,A,B] after addToFront(C)
 	 */
 	private IndexedUnsortedList<Integer> AB_addToFrontC_CAB() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
-		list.addToFront(ELEMENT_C);
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
 		return list;
 	}
+	
 	private Scenario<Integer> AB_addToFrontC_CAB = () -> AB_addToFrontC_CAB();
-	/**
-	 * Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C]
-	 *
+	
+	/** Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C]
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
 	private IndexedUnsortedList<Integer> AB_addAfterCB_ABC() {
@@ -488,151 +460,120 @@ public class ListTester {
 		return list;
 	}
 	private Scenario<Integer> AB_addAfterCB_ABC = () -> AB_addAfterCB_ABC();
-	/**
-	 * Scenario #23: [A,B] -> add(1,C) -> [A,C,B]
-	 *
+
+	/** Scenario #23: [A,B] -> add(1,C) -> [A,C,B]
 	 * @return [A,C,B] after add(1,C)
 	 */
 
-	/**
-	 * Scenario #25: [A,B] -> removeFirst() -> [B]
-	 *
+
+	/** Scenario #25: [A,B] -> removeFirst() -> [B]
 	 * @return [B] after removeFirst()
 	 */
 
-	/**
-	 * Scenario #26: [A,B] -> removeLast() -> [A]
-	 *
+
+	/** Scenario #26: [A,B] -> removeLast() -> [A]
 	 * @return [A] after removeLast()
 	 */
-
 	private IndexedUnsortedList<Integer> AB_removeLast_A() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB();
-		list.removeLast();
-		return list;
-	}
-	private Scenario<Integer> AB_removeLast_A = () -> AB_removeLast_A();
+        IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+        list.removeLast();
+        return list;
+    }
+    private Scenario<Integer> AB_removeLast_A = () -> AB_removeLast_A();
 
-	/**
-	 * Scenario #27: [A,B] -> remove(A) -> [B]
-	 *
+	/** Scenario #27: [A,B] -> remove(A) -> [B]
 	 * @return [B] after remove(A)
 	 */
 
-	/**
-	 * Scenario #28: [A,B] -> remove(B) -> [A]
-	 *
+
+	/** Scenario #28: [A,B] -> remove(B) -> [A]
 	 * @return [A] after remove(B)
 	 */
 
 	 private IndexedUnsortedList<Integer> AB_removeB_A() {
-		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
-		return list;
-	}
-	private Scenario<Integer> AB_removeB_A = () -> AB_removeB_A();
+        IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+        list.remove(ELEMENT_B);
+        return list;
+    }
+    private Scenario<Integer> AB_removeB_A = () -> AB_removeB_A();
 
-	/**
-	 * Scenario #29: [A,B] -> remove(0) -> [B]
-	 *
+	/** Scenario #29: [A,B] -> remove(0) -> [B]
 	 * @return [B] after remove(0)
 	 */
 
-	 public void testScenario28_removeBFromAB_returnsA() {
 
-	 }
-
-	/**
-	 * Scenario #30: [A,B] -> remove(1) -> [A]
-	 *
+	/** Scenario #30: [A,B] -> remove(1) -> [A]
 	 * @return [A] after remove(1)
 	 */
 
-	/**
-	 * Scenario #33: [A,B,C] -> removeFirst() -> [B,C]
-	 *
+
+	/** Scenario #33: [A,B,C] -> removeFirst() -> [B,C]
 	 * @return [B,C] after removeFirst()
 	 */
 
-	/**
-	 * Scenario #37: [A,B,C] -> remove(C) -> [A,B]
-	 *
+
+	/** Scenario #37: [A,B,C] -> remove(C) -> [A,B]
 	 * @return [A,B] after remove(C)
 	 */
 
-	/**
-	 * Scenario #39: [A,B,C] -> remove(1) -> [A,C]
-	 *
+
+	/** Scenario #39: [A,B,C] -> remove(1) -> [A,C]
 	 * @return [A,C] after remove(1)
 	 */
 
-	/**
-	 * Scenario #44: [A] -> iterator, next(), remove() -> []
-	 *
+
+	/** Scenario #44: [A] -> iterator, next(), remove() -> []
 	 * @return [] after iterator, next(), remove()
 	 */
 
-	/**
-	 * Scenario #45: [A,B] -> iterator, next(), remove() -> [B]
-	 *
+
+	/** Scenario #45: [A,B] -> iterator, next(), remove() -> [B]
 	 * @return [B] after iterator, next(), remove()
 	 */
 
-	/**
-	 * Scenario #46: [A,B] -> iterator, next(), next(), remove() -> [A]
-	 *
+
+	/** Scenario #46: [A,B] -> iterator, next(), next(), remove() -> [A]
 	 * @return [A] after iterator, next(), next(), remove()
 	 */
 
-	/**
-	 * Scenario #47: [A,B] -> iterator, next(), remove(), next(), remove() -> []
-	 *
+
+	/** Scenario #47: [A,B] -> iterator, next(), remove(), next(), remove() -> []
 	 * @return [] after iterator, next(), remove(), next(), remove()
 	 */
 
-	/**
-	 * Scenario #48: [A,B,C] -> iterator, next(), remove() -> [B,C]
-	 *
+
+	/** Scenario #48: [A,B,C] -> iterator, next(), remove() -> [B,C]
 	 * @return [B,C] after iterator, next(), remove()
 	 */
 
-	/**
-	 * Scenario #49: [A,B,C] -> iterator, next(), next(), remove() -> [A,C]
-	 *
+
+	/** Scenario #49: [A,B,C] -> iterator, next(), next(), remove() -> [A,C]
 	 * @return [A,C] after iterator, next(), next(), remove()
 	 */
 
-	/**
-	 * Scenario #50: [A,B,C] -> iterator, next(), next(), next(), remove() -> [A,B]
-	 *
+
+	/** Scenario #50: [A,B,C] -> iterator, next(), next(), next(), remove() -> [A,B]
 	 * @return [A,B] after iterator, next(), next(), next(), remove()
 	 */
 
-	/**
-	 * Scenario #51: [A,B,C] -> iterator, next(), remove(), next(), remove() -> [C]
-	 *
+
+	/** Scenario #51: [A,B,C] -> iterator, next(), remove(), next(), remove() -> [C]
 	 * @return [C] after iterator, next(), remove(), next(), remove()
 	 */
 
-	/**
-	 * Scenario #52: [A,B,C] -> iterator, next(), remove(), next(), next(), remove()
-	 * -> [B]
-	 *
+
+	/** Scenario #52: [A,B,C] -> iterator, next(), remove(), next(), next(), remove() -> [B]
 	 * @return [B] after iterator, next(), remove(), next(), next(), remove()
 	 */
 
-	/**
-	 * Scenario #53: [A,B,C] -> iterator, next(), next(), remove(), next(), remove()
-	 * -> [A]
-	 *
+
+	/** Scenario #53: [A,B,C] -> iterator, next(), next(), remove(), next(), remove() -> [A]
 	 * @return [A] after iterator, next(), next(), remove(), next(), remove()
 	 */
 
-	/**
-	 * Scenario #54: [A,B,C] -> iterator, next(), remove(), next(), remove(),
-	 * next(), remove() -> []
-	 *
-	 * @return [] after iterator, next(), remove(), next(), remove(), next(),
-	 *         remove()
+
+	/** Scenario #54: [A,B,C] -> iterator, next(), remove(), next(), remove(), next(), remove() -> []
+	 * @return [] after iterator, next(), remove(), next(), remove(), next(), remove()
 	 */
 
 	/////////////////////////////////
