@@ -525,11 +525,21 @@ public class ListTester {
 	 * @return [A] after remove(B)
 	 */
 
+	 private IndexedUnsortedList<Integer> AB_removeB_A() {
+		IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+		return list;
+	}
+	private Scenario<Integer> AB_removeB_A = () -> AB_removeB_A();
+
 	/**
 	 * Scenario #29: [A,B] -> remove(0) -> [B]
 	 *
 	 * @return [B] after remove(0)
 	 */
+
+	 public void testScenario28_removeBFromAB_returnsA() {
+
+	 }
 
 	/**
 	 * Scenario #30: [A,B] -> remove(1) -> [A]

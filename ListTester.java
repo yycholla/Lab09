@@ -214,10 +214,12 @@ public class ListTester {
 			// Scenario: 25 TODO Tyra
 
 			// Scenario: 26
+			testSingleElementList(AB_removeLast_A, "26: AB_removeLast_A", LIST_A, STRING_A);
 
 			// Scenario: 27
 
 			// Scenario: 28 TODO Kelsi
+			testSingleElementList(AB_removeB_A, "28: AB_removeB_A", LIST_A, STRING_A); // ADD THIS LINE
 
 			// Scenario: 29
 

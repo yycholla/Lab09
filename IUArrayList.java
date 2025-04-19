@@ -65,6 +65,27 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public void addAfter(E element, E target) {
 		// TODO Kelsi
+		if (isEmpty()) {
+            throw new NoSuchElementException("The list is empty.");
+        }
+
+        int targetIndex = indexOf(target);
+        if (targetIndex == NOT_FOUND) {
+            throw new NoSuchElementException("The target element is not in the list.");
+        }
+
+        if (rear == array.length) {
+            expandCapacity();
+        }
+
+        // Shift elements to make space for the new element
+        for (int i = rear; i > targetIndex + 1; i--) {
+            array[i] = array[i - 1];
+        }
+
+        array[targetIndex + 1] = element;
+        rear++;
+        modCount++; // DO NOT REMOVE ME
 		modCount++; // DO NOT REMOVE ME
 	}
 
@@ -134,6 +155,10 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public void set(int index, E element) {
 		// TODO Kelsi
+		if (index < 0 || index >= rear) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
+        }
+        array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
 
