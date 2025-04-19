@@ -22,80 +22,70 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	/**
 	 * Creates an empty array with the given initial capacity
+	 * 
 	 * @param initialCapacity
 	 */
 	@SuppressWarnings("unchecked")
 	public IUArrayList(int initialCapacity) {
-		array = (E[])(new Object[initialCapacity]);
+		array = (E[]) (new Object[initialCapacity]);
 		rear = 0;
 		modCount = 0; // DO NOT REMOVE ME
 	}
 
 	/** Double the capacity of array */
 	private void expandCapacity() {
-		array = Arrays.copyOf(array, array.length*2);
+		array = Arrays.copyOf(array, array.length * 2);
 	}
 
 	@Override
 	public void addToFront(E element) {
 		// REVIEW Zion
-		if (this.size() == this.array.length) { expandCapacity(); }
-		shiftEntries(0);
-		array[0] = element;
+		// if (this.size() == this.array.length) { expandCapacity(); } - CH: Included in
+		// shiftEntries
+		add(0, element);
 		modCount++; // DO NOT REMOVE ME
-
 	}
 
 	@Override
 	public void addToRear(E element) {
 		// REVIEW Colin
-		add(element);
+		add(rear, element);
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public void add(E element) {
 		// REVIEW Tyler
-		if (this.size() == this.array.length) { expandCapacity(); }
-		array[rear] = element;
-		rear++;
+		add(rear, element);
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public void addAfter(E element, E target) {
 		// REVIEW Kelsi
-		if (isEmpty()) {
-            throw new NoSuchElementException("The list is empty.");
-        }
-
-        int targetIndex = indexOf(target);
-        if (targetIndex == NOT_FOUND) {
-            throw new NoSuchElementException("The target element is not in the list.");
-        }
-
-        if (rear == array.length) {
-            expandCapacity();
-        }
-
-        for (int i = rear; i > targetIndex + 1; i--) {
-            array[i] = array[i - 1];
-        }
-
-        array[targetIndex + 1] = element;
-        rear++;
-        modCount++; // DO NOT REMOVE ME
+		emptyCheck();
+		if (!contains(target)) {
+			throw new NoSuchElementException();
+		}
+		add(indexOf(target) + 1, element);
+		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public void add(int index, E element) {
 		// TODO Tyra
+		rangeCheck(index);
+		shiftEntries(index);
+		array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public E removeFirst() {
 		// REVIEW Zion
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
 		E retVal = this.remove(first());
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
@@ -104,8 +94,10 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E removeLast() {
 		// REVIEW Colin
-		rear--;
-		E retVal = this.remove(rear);
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		E retVal = this.remove(rear - 1);
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
 	}
@@ -120,9 +112,9 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		E retVal = array[index];
 
 		rear--;
-		//shift elements
-		for (int i = index; i < rear; i++) {
-			array[i] = array[i+1];
+		// shift elements
+		for (int i = index; i <= rear; i++) {
+			array[i] = array[i + 1];
 		}
 		array[rear] = null;
 
@@ -132,16 +124,16 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	public E remove(int index) {
 		// REVIEW Tyler
-		if (index < 0 || index >= rear) { // ***CORRECTED!***
-			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
+		if (index < 0 || index >= rear) { // ***CH- Corrected corrections***
+			throw new IndexOutOfBoundsException();
 		}
 
 		E retVal = array[index];
 
 		rear--;
-		//shift elements
-		for (int i = index; i < rear; i++) {
-			array[i] = array[i+1];
+		// shift elements
+		for (int i = index; i <= rear; i++) {
+			array[i] = array[i + 1];
 		}
 		array[rear] = null;
 
@@ -153,47 +145,49 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	public void set(int index, E element) {
 		// REVIEW Kelsi
 		if (index < 0 || index >= rear) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
-        }
-        array[index] = element;
+			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
+		}
+		array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
 	public E get(int index) {
 		// TODO Tyra
-		return null;
+		if (index < 0 || index >= rear) {
+			throw new IndexOutOfBoundsException();
+		}
+		return array[index];
 	}
 
 	@Override
 	public int indexOf(E element) {
-		int index = NOT_FOUND;
-
-		if (!isEmpty()) {
-			int i = 0;
-			while (index == NOT_FOUND && i < rear) {
-				if (element.equals(array[i])) {
-					index = i;
-				} else {
-					i++;
-				}
+		if (isEmpty()) {
+			return NOT_FOUND;
+		}
+		for (int i = 0; i < rear; i++) {
+			if (element.equals(array[i])) {
+				return i;
 			}
 		}
 
-		return index;
+		return NOT_FOUND;
 	}
 
 	@Override
 	public E first() {
 		// REVIEW Zion
-		if (isEmpty()) { throw new NoSuchElementException(); }
+		emptyCheck();
 		return array[0];
 	}
 
 	@Override
 	public E last() {
 		// REVIEW Colin
-		return get(rear);
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		return get(rear - 1);
 	}
 
 	@Override
@@ -217,27 +211,45 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	public String toString() {
 		String result = "[";
 		// TODO Tyra
+		for (E e : array) {
+			if (e != null) {
+				result += e + ", ";
+			}
+		}
 		return result + "]";
 	}
 
 	private void shiftEntries(int startingIndex) {
 		if (rear == array.length) {
-            expandCapacity();
-        }
-        for (int i = rear; i > startingIndex; i--) {
-            array[i] = array[i - 1];
-        }
-        rear++;
-    }
+			expandCapacity();
+		}
+		for (int i = rear; i > startingIndex && i != 0; i--) {
+			array[i] = array[i - 1];
+		}
+		this.rear++;
+
+	}
+
+	private void emptyCheck() {
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+	}
+
+	private void rangeCheck(int index) {
+		if (index < 0 || index > rear) {
+			throw new IndexOutOfBoundsException();
+		}
+	}
 	// POSSIBLY MORE CORRECT IMPLMENTATION FOR THIS ONE?? ~ Kelsi
 	// if (rear == array.length) {
-    //         expandCapacity();
-    //     }
-    //     for (int i = rear; i > startingIndex; i--) {
-    //         array[i] = array[i - 1];
-    //     }
-    //     rear++;
-    // }
+	// expandCapacity();
+	// }
+	// for (int i = rear; i > startingIndex; i--) {
+	// array[i] = array[i - 1];
+	// }
+	// rear++;
+	// }
 
 	// IGNORE THE FOLLOWING COMMENTED OUT CODE UNTIL LAB 10
 	// DON'T DELETE ME, HOWEVER!!!
@@ -250,59 +262,59 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	// private class IUArrayarrayIterator implements Iterator<E> {
 
-	// 	private int iterModCount, current;
-	// 	private boolean canRemove;
+	// private int iterModCount, current;
+	// private boolean canRemove;
 
-	// 	public IUArrayarrayIterator() {
-	// 		iterModCount = modCount;
-	// 		current = 0;
-	// 		canRemove = false;
-	// 	}
+	// public IUArrayarrayIterator() {
+	// iterModCount = modCount;
+	// current = 0;
+	// canRemove = false;
+	// }
 
-	// 	@Override
-	// 	public boolean hasNext() {
-    //         if (iterModCount != modCount) {
-    //             throw new ConcurrentModificationException();
-    //         }
-    //         return current < rear;
-	// 	}
+	// @Override
+	// public boolean hasNext() {
+	// if (iterModCount != modCount) {
+	// throw new ConcurrentModificationException();
+	// }
+	// return current < rear;
+	// }
 
-	// 	@Override
-	// 	public E next() {
-    //         if (!hasNext()) {
-    //             throw new NoSuchElementException();
-    //         }
-    //         E item = array[current];
-	// 		current++;
-    //         canRemove = true;
-    //         return item;
-	// 	}
+	// @Override
+	// public E next() {
+	// if (!hasNext()) {
+	// throw new NoSuchElementException();
+	// }
+	// E item = array[current];
+	// current++;
+	// canRemove = true;
+	// return item;
+	// }
 
-	// 	@Override
-	// 	public void remove() {
-    //         if (iterModCount != modCount) {
-    //             throw new ConcurrentModificationException();
-    //         }
-    //         if (!canRemove) {
-    //             throw new IllegalStateException();
-    //         }
-    //         // remove the element in the array at index current-1
-    //         // presumably decrement the rear
-    //         // presumably the modCount is getting incremented
-	// 		// all indices have to back up by one
-	// 		current--;
-	// 		rear--;
-	// 		// shift elements to the left
-	// 		for (int i = current; i < rear; i++) {
-	// 			array[i] = array[i + 1];
-	// 		}
-	// 		array[rear] = null;
-	// 		modCount++;
-	// 		iterModCount++;
-	// 		// Can only remove the LAST "seen" element
-	// 		// set back to a non-removal state
-    //         canRemove = false;
-	// 	}
+	// @Override
+	// public void remove() {
+	// if (iterModCount != modCount) {
+	// throw new ConcurrentModificationException();
+	// }
+	// if (!canRemove) {
+	// throw new IllegalStateException();
+	// }
+	// // remove the element in the array at index current-1
+	// // presumably decrement the rear
+	// // presumably the modCount is getting incremented
+	// // all indices have to back up by one
+	// current--;
+	// rear--;
+	// // shift elements to the left
+	// for (int i = current; i < rear; i++) {
+	// array[i] = array[i + 1];
+	// }
+	// array[rear] = null;
+	// modCount++;
+	// iterModCount++;
+	// // Can only remove the LAST "seen" element
+	// // set back to a non-removal state
+	// canRemove = false;
+	// }
 
 	// }
 
