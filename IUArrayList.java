@@ -78,7 +78,6 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
             expandCapacity();
         }
 
-        // Shift elements to make space for the new element
         for (int i = rear; i > targetIndex + 1; i--) {
             array[i] = array[i - 1];
         }
@@ -86,7 +85,6 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
         array[targetIndex + 1] = element;
         rear++;
         modCount++; // DO NOT REMOVE ME
-		modCount++; // DO NOT REMOVE ME
 	}
 
 	@Override
@@ -132,22 +130,21 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		return retVal;
 	}
 
-	@Override
 	public E remove(int index) {
 		// TODO Tyler
-		if (index < 0 || index >= rear) {
-			throw new IndexOutOfBoundsException();
+		if (index < 0 || index >= rear) { // ***CORRECTED!***
+			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
 		}
-
+	
 		E retVal = array[index];
-
+	
 		rear--;
 		//shift elements
 		for (int i = index; i < rear; i++) {
 			array[i] = array[i+1];
 		}
 		array[rear] = null;
-
+	
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
 	}
@@ -213,7 +210,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public int size() {
 		// TODO Kelsi
-		return 0;
+		return rear;
 	}
 
 	@Override
