@@ -193,7 +193,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E last() {
 		// REVIEW Colin
-		return get(indexOf(last()));
+		return get(rear);
 	}
 
 	@Override
