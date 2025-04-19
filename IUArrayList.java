@@ -38,7 +38,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void addToFront(E element) {
-		// TODO Zion
+		// REVIEW Zion
 		if (this.size() == this.array.length) { expandCapacity(); }
 		shiftEntries(0);
 		array[0] = element;
@@ -55,7 +55,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void add(E element) {
-		// TODO Tyler
+		// REVIEW Tyler
 		if (this.size() == this.array.length) { expandCapacity(); }
 		array[rear] = element;
 		rear++;
@@ -64,7 +64,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void addAfter(E element, E target) {
-		// TODO Kelsi
+		// REVIEW Kelsi
 		if (isEmpty()) {
             throw new NoSuchElementException("The list is empty.");
         }
@@ -95,7 +95,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public E removeFirst() {
-		// TODO Zion
+		// REVIEW Zion
 		E retVal = this.remove(first());
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
@@ -131,27 +131,27 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	}
 
 	public E remove(int index) {
-		// TODO Tyler
+		// REVIEW Tyler
 		if (index < 0 || index >= rear) { // ***CORRECTED!***
 			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
 		}
-	
+
 		E retVal = array[index];
-	
+
 		rear--;
 		//shift elements
 		for (int i = index; i < rear; i++) {
 			array[i] = array[i+1];
 		}
 		array[rear] = null;
-	
+
 		modCount++; // DO NOT REMOVE ME
 		return retVal;
 	}
 
 	@Override
 	public void set(int index, E element) {
-		// TODO Kelsi
+		// REVIEW Kelsi
 		if (index < 0 || index >= rear) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
         }
@@ -185,7 +185,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public E first() {
-		// TODO Zion
+		// REVIEW Zion
 		if (isEmpty()) { throw new NoSuchElementException(); }
 		return array[0];
 	}
@@ -203,13 +203,13 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Tyler
+		// REVIEW Tyler
 		return size() == 0;
 	}
 
 	@Override
 	public int size() {
-		// TODO Kelsi
+		// REVIEW Kelsi
 		return rear;
 	}
 
@@ -229,7 +229,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
         }
         rear++;
     }
-	// POSSIBLY MORE CORRECT IMPLMENTATION FOR THIS ONE?? ~ Kelsi 
+	// POSSIBLY MORE CORRECT IMPLMENTATION FOR THIS ONE?? ~ Kelsi
 	// if (rear == array.length) {
     //         expandCapacity();
     //     }

@@ -20,7 +20,7 @@ public class ListTester {
 	};
 
 	// TODO: THIS IS WHERE YOU CHOOSE WHICH LIST TO TEST
-	private final static ListToUse LIST_TO_USE = ListToUse.goodList;
+	private final static ListToUse LIST_TO_USE = ListToUse.arrayList;
 
 	// possible results expected in tests
 	private enum Result {
@@ -342,12 +342,12 @@ public class ListTester {
 	 * @return [A] after addToFront(A)
 	 */
 	private IndexedUnsortedList<Integer> emptyList_addToFrontA_A() {
-        IndexedUnsortedList<Integer> list = newList(); 
+        IndexedUnsortedList<Integer> list = newList();
         list.addToFront(ELEMENT_A);
         return list;
     }
     private Scenario<Integer> emptyList_addToFrontA_A = () -> emptyList_addToFrontA_A();
-	
+
 	/** Scenario #03: [] -> addToRear(A) -> [A]
 	 * @return [A] after addToRear(A)
 	 */
@@ -395,7 +395,7 @@ public class ListTester {
 	 */
 
 	 private IndexedUnsortedList<Integer> A_addToRearB_AB() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
 		list.addToRear(ELEMENT_B);
 		return list;
 	}
@@ -407,7 +407,7 @@ public class ListTester {
 	 */
 
 	 private IndexedUnsortedList<Integer> A_add0B_BA() {
-		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A(); 
+		IndexedUnsortedList<Integer> list = emptyList_addToFrontA_A();
 		list.add(0, ELEMENT_B);
 		return list;
 	}
@@ -454,7 +454,7 @@ public class ListTester {
 		return list;
 	}
 	private Scenario<Integer> AB_addToFrontC_CAB = () -> AB_addToFrontC_CAB();
-	
+
 	/** Scenario #20: [A,B] -> addAfter(C,B) -> [A,B,C]
 	 * @return [A,B,C] after addAfter(C,B)
 	 */
@@ -479,7 +479,7 @@ public class ListTester {
 	 * @return [A] after removeLast()
 	 */
 	private IndexedUnsortedList<Integer> AB_removeLast_A() {
-        IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+        IndexedUnsortedList<Integer> list = A_addToRearB_AB();
         list.removeLast();
         return list;
     }
@@ -495,7 +495,7 @@ public class ListTester {
 	 */
 
 	private IndexedUnsortedList<Integer> AB_removeB_A() {
-        IndexedUnsortedList<Integer> list = A_addToRearB_AB(); 
+        IndexedUnsortedList<Integer> list = A_addToRearB_AB();
         list.remove(ELEMENT_B);
         return list;
     }
