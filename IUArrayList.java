@@ -135,8 +135,8 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E remove(int index) {
 		// TODO Tyler
-		if (index == NOT_FOUND) {
-			throw new NoSuchElementException();
+		if (index < 0 || index >= rear) {
+			throw new IndexOutOfBoundsException();
 		}
 
 		E retVal = array[index];
@@ -224,23 +224,23 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	}
 
 	private void shiftEntries(int startingIndex) {
-		if (this.size() == this.array.length) { expandCapacity(); }
-
-		int index = startingIndex;
-
-		// for (int i = 0; i < this.size() && element.compareTo(array[index]) > 0; i++) { // I believe this is unnecessary because this is a search function for an ordered list
-		// 	index++;
-		// }
-
-		int shift = rear;
-
-		while (shift != index) {
-			this.array[shift] = this.array[shift-1];
-			shift--;
-		}
-
-		rear++;
-	}
+		if (rear == array.length) {
+            expandCapacity();
+        }
+        for (int i = rear; i > startingIndex; i--) {
+            array[i] = array[i - 1];
+        }
+        rear++;
+    }
+	// POSSIBLY MORE CORRECT IMPLMENTATION FOR THIS ONE?? ~ Kelsi 
+	// if (rear == array.length) {
+    //         expandCapacity();
+    //     }
+    //     for (int i = rear; i > startingIndex; i--) {
+    //         array[i] = array[i - 1];
+    //     }
+    //     rear++;
+    // }
 
 	// IGNORE THE FOLLOWING COMMENTED OUT CODE UNTIL LAB 10
 	// DON'T DELETE ME, HOWEVER!!!
