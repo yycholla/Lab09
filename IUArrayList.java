@@ -61,10 +61,14 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		rear++;
 		modCount++; // DO NOT REMOVE ME
 	}
-
 	@Override
 	public void addAfter(E element, E target) {
-		// TODO Kelsi
+		// REVIEW Kelsi
+		emptyCheck();
+		if (!contains(target)) {
+			throw new NoSuchElementException();
+		}
+		add(indexOf(target) + 1, element);
 		modCount++; // DO NOT REMOVE ME
 	}
 
@@ -238,6 +242,12 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 		rear++;
 	}
+	private void emptyCheck() {
+		if (isEmpty()) {
+			throw new NoSuchElementException();
+		}
+	}
+
 
 	// IGNORE THE FOLLOWING COMMENTED OUT CODE UNTIL LAB 10
 	// DON'T DELETE ME, HOWEVER!!!
