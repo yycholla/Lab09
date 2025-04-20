@@ -126,7 +126,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public E remove(int index) {
 		// TODO Tyler
-		if (index == NOT_FOUND) {
+		if (index == NOT_FOUND) { // Probably should be index < 0
 			throw new NoSuchElementException();
 		}
 
