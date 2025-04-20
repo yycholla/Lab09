@@ -80,7 +80,9 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		if (rear == array.length) {
 			expandCapacity();
 		}
-		System.arraycopy(array, index, array, index  + 1, rear - index);
+		// System.out.println("Before: " + toString());
+		System.arraycopy(array, index, array, index  + 1, rear - index); // err: Could just use the shift method @zandrade-05 wrote based on our class example. Running to string before and after shows no change but could be an issue with toString()
+		// System.out.println("After: " + toString());
 		array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
@@ -202,6 +204,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public boolean isEmpty() {
 		// TODO Tyler
+		// System.err.println("___tostring___: " + toString());
 		return size() == 0;
 	}
 
@@ -212,16 +215,26 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() { // NOTE: toString output seems off, adding it to methods doesn't return expected output from what I can tell.
 		String result = "[";
 		for (int i = 0; i < rear - 1; i++) {
 			result += array[i] + ", ";
 		}
-		if (rear != 0) {
+		if (rear != 0) { // if rear = 0 the for loop won't run so you could set i <= rear - 1 in the loop and ditch this block
 			result += array[rear - 1];
 		}
 		result += "]";
-		return result + "]";
+		return result; // NOTE: removed second ] - CH
+		/*
+		 *  this whole thing could be:
+		 * String result = "[";
+		 * for (E e : array) {
+		 * 		if (e != null) {
+		 * 			result += e + ", ";
+		 * 		}
+		 * }
+		 * return result + ];
+		 */
 	}
 
 	private void shiftEntries(int startingIndex) {
