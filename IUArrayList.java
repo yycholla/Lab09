@@ -81,7 +81,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 			expandCapacity();
 		}
 		// System.out.println("Before: " + toString());
-		System.arraycopy(array, index, array, index  + 1, rear - index); // err: Could just use the shift method @zandrade-05 wrote based on our class example. Running to string before and after shows no change but could be an issue with toString()
+		shiftEntries(index);
 		// System.out.println("After: " + toString());
 		array[index] = element;
 		modCount++; // DO NOT REMOVE ME
