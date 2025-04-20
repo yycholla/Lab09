@@ -139,9 +139,12 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		return retVal;
 	}
 
-	@Override
 	public void set(int index, E element) {
-		// TODO Kelsi
+		// REVIEW Kelsi
+		if (index < 0 || index >= rear) {
+			throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + rear);
+		}
+		array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
 
@@ -201,7 +204,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 	@Override
 	public int size() {
 		// TODO Kelsi
-		return 0;
+		return rear;
 	}
 
 	@Override
