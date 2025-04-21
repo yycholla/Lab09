@@ -61,10 +61,11 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		rear++;
 		modCount++; // DO NOT REMOVE ME
 	}
+	
 	@Override
 	public void addAfter(E element, E target) {
 		// REVIEW Kelsi
-		emptyCheck();
+		emptyCheck(); // -ZA This is redundant because if the array is empty the next check will catch it either way
 		if (!contains(target)) {
 			throw new NoSuchElementException();
 		}
@@ -74,15 +75,13 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 	@Override
 	public void add(int index, E element) {
-		if (index > rear || index < 0) {
-			throw new IndexOutOfBoundsException();
-		}
+		if (index > rear || index < 0) { throw new IndexOutOfBoundsException();	}
+
 		if (rear == array.length) {
 			expandCapacity();
 		}
-		// System.out.println("Before: " + toString());
+
 		shiftEntries(index);
-		// System.out.println("After: " + toString());
 		array[index] = element;
 		modCount++; // DO NOT REMOVE ME
 	}
@@ -145,6 +144,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		return retVal;
 	}
 
+	@Override
 	public void set(int index, E element) {
 		// REVIEW Kelsi
 		if (index < 0 || index >= rear) {
@@ -241,11 +241,6 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 		if (this.size() == this.array.length) { expandCapacity(); }
 
 		int index = startingIndex;
-
-		// for (int i = 0; i < this.size() && element.compareTo(array[index]) > 0; i++) { // I believe this is unnecessary because this is a search function for an ordered list
-		// 	index++;
-		// }
-
 		int shift = rear;
 
 		while (shift != index) {
@@ -255,6 +250,7 @@ public class IUArrayList<E> implements IndexedUnsortedList<E> {
 
 		rear++;
 	}
+
 	private void emptyCheck() {
 		if (isEmpty()) {
 			throw new NoSuchElementException();
